@@ -11,14 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author andre
  */
 @Entity
-public class Professor implements Serializable {
+public class TipoProducao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -26,19 +25,10 @@ public class Professor implements Serializable {
     private Long id;
 
     @Column(length = 150, nullable = false)
-    private String nome;
-
-    @Column(length = 1, nullable = false)
-    private String sexo;
-
-    @Column(length = 14, nullable = false)
-    private String cpf;
+    private String tcc;
 
     @Column(length = 150, nullable = false)
-    private String curriculoLattes;
-
-    @OneToOne
-    private PerfilProfessor idPerfilProfessor;
+    private String artigo;
 
     public Long getId() {
         return id;
@@ -48,44 +38,20 @@ public class Professor implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTcc() {
+        return tcc;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTcc(String tcc) {
+        this.tcc = tcc;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getArtigo() {
+        return artigo;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getCurriculoLattes() {
-        return curriculoLattes;
-    }
-
-    public void setCurriculoLattes(String curriculoLattes) {
-        this.curriculoLattes = curriculoLattes;
-    }
-
-    public PerfilProfessor getIdPerfilProfessor() {
-        return idPerfilProfessor;
-    }
-
-    public void setIdPerfilProfessor(PerfilProfessor idPerfilProfessor) {
-        this.idPerfilProfessor = idPerfilProfessor;
+    public void setArtigo(String artigo) {
+        this.artigo = artigo;
     }
 
     @Override
@@ -98,10 +64,10 @@ public class Professor implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Professor)) {
+        if (!(object instanceof TipoProducao)) {
             return false;
         }
-        Professor other = (Professor) object;
+        TipoProducao other = (TipoProducao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -110,7 +76,7 @@ public class Professor implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.Professor[ id=" + id + " ]";
+        return "br.edu.ifnmg.SisTADS.DomainModel.TipoProducao[ id=" + id + " ]";
     }
 
 }

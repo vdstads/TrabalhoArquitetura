@@ -3,6 +3,19 @@
   <persistence-unit name="SisTADSPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.edu.ifnmg.SisTADS.DomainModel.Professor</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.PerfilProfessor</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.Disciplina</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.Turma</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.Cidade</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.TipoEvento</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.Evento</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.InstituicaoFutura</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.EscolaAnterior</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.Aluno</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.Curso</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.TipoProducao</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.Producao</class>
+    <class>br.edu.ifnmg.SisTADS.DomainModel.PerfilAluno</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/BD_SISTADS?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.SisTADS.Presetation;
+package br.edu.ifnmg.SisTADS.DomainModel.Repositorios;
+
+import br.edu.ifnmg.SisTADS.DomainModel.Turma;
 
 /**
  *
  * @author andre
  */
-public class Exemplo {
-
-    public static void main(String[] args) {
-
-    }
+public interface TurmaRepositorio extends Repositorio<Turma> {
+    
 }

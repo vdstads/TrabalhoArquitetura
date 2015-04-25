@@ -6,19 +6,19 @@
 package br.edu.ifnmg.SisTADS.DomainModel;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author andre
  */
 @Entity
-public class Professor implements Serializable {
+public class PerfilProfessor implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -28,17 +28,17 @@ public class Professor implements Serializable {
     @Column(length = 150, nullable = false)
     private String nome;
 
-    @Column(length = 1, nullable = false)
-    private String sexo;
+    @Column(length = 150, nullable = false)
+    private String estadoCivil;
 
-    @Column(length = 14, nullable = false)
-    private String cpf;
+    @Column(precision = 8, scale = 2)
+    private BigDecimal renda;
 
     @Column(length = 150, nullable = false)
-    private String curriculoLattes;
+    private String nomePai;
 
-    @OneToOne
-    private PerfilProfessor idPerfilProfessor;
+    @Column(length = 150, nullable = false)
+    private String nomeMae;
 
     public Long getId() {
         return id;
@@ -56,36 +56,36 @@ public class Professor implements Serializable {
         this.nome = nome;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getEstadoCivil() {
+        return estadoCivil;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
     }
 
-    public String getCpf() {
-        return cpf;
+    public BigDecimal getRenda() {
+        return renda;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setRenda(BigDecimal renda) {
+        this.renda = renda;
     }
 
-    public String getCurriculoLattes() {
-        return curriculoLattes;
+    public String getNomePai() {
+        return nomePai;
     }
 
-    public void setCurriculoLattes(String curriculoLattes) {
-        this.curriculoLattes = curriculoLattes;
+    public void setNomePai(String nomePai) {
+        this.nomePai = nomePai;
     }
 
-    public PerfilProfessor getIdPerfilProfessor() {
-        return idPerfilProfessor;
+    public String getNomeMae() {
+        return nomeMae;
     }
 
-    public void setIdPerfilProfessor(PerfilProfessor idPerfilProfessor) {
-        this.idPerfilProfessor = idPerfilProfessor;
+    public void setNomeMae(String nomeMae) {
+        this.nomeMae = nomeMae;
     }
 
     @Override
@@ -98,10 +98,10 @@ public class Professor implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Professor)) {
+        if (!(object instanceof PerfilProfessor)) {
             return false;
         }
-        Professor other = (Professor) object;
+        PerfilProfessor other = (PerfilProfessor) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -110,7 +110,7 @@ public class Professor implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.Professor[ id=" + id + " ]";
+        return "br.edu.ifnmg.SisTADS.DomainModel.PerfilProfessor[ id=" + id + " ]";
     }
 
 }
