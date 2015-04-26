@@ -44,6 +44,32 @@ public class EscolaAnterior implements Serializable {
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Date getAnoConclusao() {
+        return anoConclusao;
+    }
+
+    public void setAnoConclusao(Date anoConclusao) {
+        this.anoConclusao = anoConclusao;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
