@@ -30,6 +30,16 @@ public class Cidade implements Serializable {
     @Column(length = 2, nullable = false)
     private String estado;
 
+    public Cidade() {
+        this.nome = "";
+        this.estado = "";
+    }
+
+    public Cidade(String nome, String estado) {
+        this.nome = nome;
+        this.estado = estado;
+    }
+
     public Long getId() {
         return id;
     }

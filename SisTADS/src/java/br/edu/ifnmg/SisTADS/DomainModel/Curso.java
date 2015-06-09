@@ -6,14 +6,17 @@
 package br.edu.ifnmg.SisTADS.DomainModel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -30,11 +33,23 @@ public class Curso implements Serializable {
     @Column(length = 150, nullable = false)
     private String nome;
 
-    @ManyToMany
-    private Evento idEvento;
+    @ManyToOne
+    private Evento evento;
 
-    @ManyToMany
-    private Disciplina idDisciplina;
+    @ManyToOne
+    private Disciplina disciplina;
+
+    public Curso(String nome, Evento idEvento, Disciplina idDisciplina) {
+        this.nome = nome;
+        this.evento = idEvento;
+        this.disciplina = idDisciplina;
+    }
+
+    public Curso() {
+        this.nome = "";
+        this.evento = new Evento();
+        this.disciplina = new Disciplina();
+    }
 
     public Long getId() {
         return id;
@@ -52,37 +67,44 @@ public class Curso implements Serializable {
         this.nome = nome;
     }
 
-    public Evento getIdEvento() {
-        return idEvento;
+    public Evento getEvento() {
+        return evento;
     }
 
-    public void setIdEvento(Evento idEvento) {
-        this.idEvento = idEvento;
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
 
-    public Disciplina getIdDisciplina() {
-        return idDisciplina;
+    public Disciplina getDisciplina() {
+        return disciplina;
     }
 
-    public void setIdDisciplina(Disciplina idDisciplina) {
-        this.idDisciplina = idDisciplina;
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.evento);
+        hash = 97 * hash + Objects.hashCode(this.disciplina);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Curso)) {
+        if (object == null) {
             return false;
         }
-        Curso other = (Curso) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != object.getClass()) {
+            return false;
+        }
+        final Curso other = (Curso) object;
+        if (!Objects.equals(this.evento, other.evento)) {
+            return false;
+        }
+        if (!Objects.equals(this.disciplina, other.disciplina)) {
             return false;
         }
         return true;

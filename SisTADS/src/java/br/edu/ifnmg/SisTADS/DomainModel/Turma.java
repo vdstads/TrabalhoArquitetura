@@ -35,6 +35,18 @@ public class Turma implements Serializable {
     @Column(length = 150, nullable = false)
     private String ingresso;
 
+    public Turma(int periodo, Date ano, String ingresso) {
+        this.periodo = periodo;
+        this.ano = ano;
+        this.ingresso = ingresso;
+    }
+
+    public Turma() {
+        this.periodo = 0;
+        this.ano = new Date();
+        this.ingresso = "";
+    }
+
     public Long getId() {
         return id;
     }

@@ -7,6 +7,7 @@ package br.edu.ifnmg.SisTADS.DomainModel;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,10 +39,28 @@ public class PerfilAluno implements Serializable {
     private String nomePai;
 
     @ManyToOne
-    private InstituicaoFutura idInstituicaoFutura;
+    private InstituicaoFutura instituicaoFutura;
 
     @ManyToOne
-    private EscolaAnterior idEscolaAnterior;
+    private EscolaAnterior escolaAnterior;
+
+    public PerfilAluno(int quantidadeIrmaos, BigDecimal renda, String nomeMae, String nomePai, InstituicaoFutura idInstituicaoFutura, EscolaAnterior idEscolaAnterior) {
+        this.quantidadeIrmaos = quantidadeIrmaos;
+        this.renda = renda;
+        this.nomeMae = nomeMae;
+        this.nomePai = nomePai;
+        this.instituicaoFutura = idInstituicaoFutura;
+        this.escolaAnterior = idEscolaAnterior;
+    }
+
+    public PerfilAluno() {
+        this.quantidadeIrmaos = 0;
+        this.renda = new BigDecimal(0.00);
+        this.nomeMae = "";
+        this.nomePai = "";
+        this.instituicaoFutura = new InstituicaoFutura();
+        this.escolaAnterior = new EscolaAnterior();
+    }
 
     public Long getId() {
         return id;
@@ -83,37 +102,44 @@ public class PerfilAluno implements Serializable {
         this.nomePai = nomePai;
     }
 
-    public InstituicaoFutura getIdInstituicaoFutura() {
-        return idInstituicaoFutura;
+    public InstituicaoFutura getInstituicaoFutura() {
+        return instituicaoFutura;
     }
 
-    public void setIdInstituicaoFutura(InstituicaoFutura idInstituicaoFutura) {
-        this.idInstituicaoFutura = idInstituicaoFutura;
+    public void setInstituicaoFutura(InstituicaoFutura instituicaoFutura) {
+        this.instituicaoFutura = instituicaoFutura;
     }
 
-    public EscolaAnterior getIdEscolaAnterior() {
-        return idEscolaAnterior;
+    public EscolaAnterior getEscolaAnterior() {
+        return escolaAnterior;
     }
 
-    public void setIdEscolaAnterior(EscolaAnterior idEscolaAnterior) {
-        this.idEscolaAnterior = idEscolaAnterior;
+    public void setEscolaAnterior(EscolaAnterior escolaAnterior) {
+        this.escolaAnterior = escolaAnterior;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.instituicaoFutura);
+        hash = 97 * hash + Objects.hashCode(this.escolaAnterior);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PerfilAluno)) {
+        if (object == null) {
             return false;
         }
-        PerfilAluno other = (PerfilAluno) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != object.getClass()) {
+            return false;
+        }
+        final PerfilAluno other = (PerfilAluno) object;
+        if (!Objects.equals(this.instituicaoFutura, other.instituicaoFutura)) {
+            return false;
+        }
+        if (!Objects.equals(this.escolaAnterior, other.escolaAnterior)) {
             return false;
         }
         return true;

@@ -36,6 +36,18 @@ public class EscolaAnterior implements Serializable {
     @Column(length = 150, nullable = false)
     private String localidade;
 
+    public EscolaAnterior(String nome, Date anoConclusao, String localidade) {
+        this.nome = nome;
+        this.anoConclusao = anoConclusao;
+        this.localidade = localidade;
+    }
+
+    public EscolaAnterior() {
+        this.nome = "";
+        this.anoConclusao = new Date();
+        this.localidade = "";
+    }
+
     public Long getId() {
         return id;
     }
@@ -68,8 +80,6 @@ public class EscolaAnterior implements Serializable {
         this.localidade = localidade;
     }
 
-    
-    
     @Override
     public int hashCode() {
         int hash = 0;

@@ -27,6 +27,14 @@ public class TipoEvento implements Serializable {
     @Column(length = 150, nullable = false)
     private String viajem;
 
+    public TipoEvento() {
+        viajem = "";
+    }
+
+    public TipoEvento(String viajem) {
+        this.viajem = viajem;
+    }
+
     public Long getId() {
         return id;
     }

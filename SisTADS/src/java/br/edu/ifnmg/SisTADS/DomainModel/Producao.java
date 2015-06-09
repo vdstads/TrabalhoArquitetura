@@ -38,7 +38,21 @@ public class Producao implements Serializable {
     private Date data;
 
     @ManyToOne
-    private TipoProducao idTipoProducao;
+    private TipoProducao tipoProducao;
+
+    public Producao(String nome, String orientador, Date data, TipoProducao idTipoProducao) {
+        this.nome = nome;
+        this.orientador = orientador;
+        this.data = data;
+        this.tipoProducao = idTipoProducao;
+    }
+
+    public Producao() {
+        this.nome = "";
+        this.orientador = "";
+        this.data = new Date();
+        this.tipoProducao = new TipoProducao();
+    }
 
     public Long getId() {
         return id;
@@ -72,12 +86,12 @@ public class Producao implements Serializable {
         this.data = data;
     }
 
-    public TipoProducao getIdTipoProducao() {
-        return idTipoProducao;
+    public TipoProducao getTipoProducao() {
+        return tipoProducao;
     }
 
-    public void setIdTipoProducao(TipoProducao idTipoProducao) {
-        this.idTipoProducao = idTipoProducao;
+    public void setTipoProducao(TipoProducao tipoProducao) {
+        this.tipoProducao = tipoProducao;
     }
 
     @Override

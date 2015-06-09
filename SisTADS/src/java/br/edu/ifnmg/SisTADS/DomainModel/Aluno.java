@@ -7,6 +7,7 @@ package br.edu.ifnmg.SisTADS.DomainModel;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -58,6 +59,39 @@ public class Aluno implements Serializable {
 
     @OneToOne
     private PerfilAluno idPerfilAluno;
+
+    @OneToOne
+    private Usuario idUsuario;
+
+    public Aluno(String nome, String sexo, Date data, int matricula, int telefone, int rg, Turma idTurma, Curso idCurso, Evento idEvento, Producao idProducao, PerfilAluno idPerfilAluno, Usuario usuario) {
+        this.nome = nome;
+        this.sexo = sexo;
+        this.data = data;
+        this.matricula = matricula;
+        this.telefone = telefone;
+        this.rg = rg;
+        this.idTurma = idTurma;
+        this.idCurso = idCurso;
+        this.idEvento = idEvento;
+        this.idProducao = idProducao;
+        this.idPerfilAluno = idPerfilAluno;
+        this.idUsuario = usuario;
+    }
+
+    public Aluno() {
+        this.nome = "";
+        this.sexo = "";
+        this.data = new Date();
+        this.matricula = 0;
+        this.telefone = 0;
+        this.rg = 0;
+        this.idTurma = new Turma();
+        this.idCurso = new Curso();
+        this.idEvento = new Evento();
+        this.idProducao = new Producao();
+        this.idPerfilAluno = new PerfilAluno();
+        this.idUsuario = new Usuario();
+    }
 
     public Long getId() {
         return id;
@@ -155,21 +189,53 @@ public class Aluno implements Serializable {
         this.idPerfilAluno = idPerfilAluno;
     }
 
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.idTurma);
+        hash = 97 * hash + Objects.hashCode(this.idCurso);
+        hash = 97 * hash + Objects.hashCode(this.idEvento);
+        hash = 97 * hash + Objects.hashCode(this.idProducao);
+        hash = 97 * hash + Objects.hashCode(this.idPerfilAluno);
+        hash = 97 * hash + Objects.hashCode(this.idPerfilAluno);
+        hash = 97 * hash + Objects.hashCode(this.idUsuario);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Aluno)) {
+        if (object == null) {
             return false;
         }
-        Aluno other = (Aluno) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != object.getClass()) {
+            return false;
+        }
+        final Aluno other = (Aluno) object;
+        if (!Objects.equals(this.idTurma, other.idTurma)) {
+            return false;
+        }
+        if (!Objects.equals(this.idCurso, other.idCurso)) {
+            return false;
+        }
+        if (!Objects.equals(this.idEvento, other.idEvento)) {
+            return false;
+        }
+        if (!Objects.equals(this.idProducao, other.idProducao)) {
+            return false;
+        }
+        if (!Objects.equals(this.idPerfilAluno, other.idPerfilAluno)) {
+            return false;
+        }
+        if (!Objects.equals(this.idUsuario, other.idUsuario)) {
             return false;
         }
         return true;

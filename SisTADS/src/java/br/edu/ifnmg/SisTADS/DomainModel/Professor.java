@@ -38,7 +38,23 @@ public class Professor implements Serializable {
     private String curriculoLattes;
 
     @OneToOne
-    private PerfilProfessor idPerfilProfessor;
+    private PerfilProfessor perfilProfessor;
+
+    public Professor(String nome, String sexo, String cpf, String curriculoLattes, PerfilProfessor idPerfilProfessor) {
+        this.nome = nome;
+        this.sexo = sexo;
+        this.cpf = cpf;
+        this.curriculoLattes = curriculoLattes;
+        this.perfilProfessor = idPerfilProfessor;
+    }
+
+    public Professor() {
+        this.nome = "";
+        this.sexo = "";
+        this.cpf = "";
+        this.curriculoLattes = "";
+        this.perfilProfessor = new PerfilProfessor();
+    }
 
     public Long getId() {
         return id;
@@ -80,12 +96,12 @@ public class Professor implements Serializable {
         this.curriculoLattes = curriculoLattes;
     }
 
-    public PerfilProfessor getIdPerfilProfessor() {
-        return idPerfilProfessor;
+    public PerfilProfessor getPerfilProfessor() {
+        return perfilProfessor;
     }
 
-    public void setIdPerfilProfessor(PerfilProfessor idPerfilProfessor) {
-        this.idPerfilProfessor = idPerfilProfessor;
+    public void setPerfilProfessor(PerfilProfessor perfilProfessor) {
+        this.perfilProfessor = perfilProfessor;
     }
 
     @Override

@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
@@ -22,104 +23,123 @@ import javax.persistence.Query;
  */
 public abstract class DAOGenerico<T> implements Repositorio<T> {
 
-    private EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("SisTADSPU");
+     @PersistenceContext(name = "SisTADSPU")
     protected EntityManager manager;
     private Class tipo;
     String where = "";
     String orderby = "";
     String jpql = "select c from ";
-    Map<String,Object> parametros = new HashMap<>();
+    Map<String, Object> parametros = new HashMap<>();
 
     public DAOGenerico(Class t) {
-        manager = fabrica.createEntityManager();
         this.tipo = t;
-        jpql += t.getSimpleName() + " c";
+        this.tipo = t;
+
     }
-    
-    public DAOGenerico<T> OrderBy(String campo, String order){
-        
-        if(campo != null){
-            if(orderby.length() > 0)
-                    orderby += ",";
-        
+
+    public DAOGenerico<T> OrderBy(String campo, String order) {
+
+        if (campo != null) {
+            if (orderby.length() > 0) {
+                orderby += ",";
+            }
+
             orderby += "c." + campo + " " + order;
         }
-        
+
         return this;
     }
-    
-    public DAOGenerico<T> IgualA(String campo, Object valor){
-        
-        if(where.length() > 0)
-                    where += " and ";
-        
-        if(valor != null){
-                where = where + "c." + campo + " = :" + campo;
-                parametros.put(campo, valor);
-            }
-        
-        return this;
-    }
-    
-    public DAOGenerico<T> Like(String campo, String valor){
-        
-        if(where.length() > 0)
-                    where += " and ";
-        
-        if(valor != null){
-                where = where + "c." + campo +" like '%"+ valor +"%'";
-            }
-        
-        return this;
-    }
-    
-    public List<T> Buscar() {
-        if(where.length() > 0){
-            jpql = jpql + " where " + where;
+
+    public DAOGenerico<T> IgualA(String campo, Object valor) {
+
+        if (valor == null || valor.toString().isEmpty()) {
+            return this;
         }
-        
-        if(orderby.length() > 0)
-            jpql = jpql + " order by " + orderby;
-        
-        Query consulta = manager.createQuery(jpql);
-        
-        for(String parametro : parametros.keySet())
-            consulta.setParameter(parametro, parametros.get(parametro));
-        
-        where = "";
-        
-        return consulta.getResultList();
+
+        if (where.length() > 0) {
+            where += " and ";
+        }
+
+        if (valor != null) {
+            where = where + "c." + campo + " = :" + campo;
+            parametros.put(campo, valor);
+        }
+
+        return this;
+
+    }
+
+    public DAOGenerico<T> Like(String campo, String valor) {
+
+        if (valor == null || valor.isEmpty()) {
+            return this;
+        }
+
+        if (where.length() > 0) {
+            where += " and ";
+        }
+
+        if (valor != null) {
+            where = where + "c." + campo + " like '%" + valor + "%'";
+        }
+
+        return this;
+    }
+
+    public List<T> Buscar() {
+        try {
+
+            jpql += tipo.getSimpleName() + " c";
+
+            if (where.length() > 0) {
+                jpql = jpql + " where " + where;
+            }
+
+            if (orderby.length() > 0) {
+                jpql = jpql + " order by " + orderby;
+            }
+
+            Query consulta = manager.createQuery(jpql);
+
+            for (String parametro : parametros.keySet()) {
+                consulta.setParameter(parametro, parametros.get(parametro));
+            }
+            return consulta.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            where = "";
+            jpql = "select c from ";
+            orderby = "";
+            parametros = new HashMap<>();
+        }
+
     }
 
     @Override
     public boolean Salvar(T obj) {
-        EntityTransaction t = manager.getTransaction();
         try {
-            t.begin();
             manager.persist(obj);
-            t.commit();
+            manager.flush();
             return true;
-        } catch(Exception e){
-            t.rollback();
+        } catch (Exception e) {
+
             return false;
         }
     }
 
     @Override
     public T Abrir(Long id) {
-        return (T)manager.find(tipo, id);
+        return (T) manager.find(tipo, id);
     }
 
     @Override
     public boolean Apagar(T obj) {
-        EntityTransaction t = manager.getTransaction();
         try {
-            t.begin();
             manager.remove(obj);
-            t.commit();
             return true;
-        } catch(Exception e){
-            t.rollback();
+        } catch (Exception e) {
             return false;
         }
     }

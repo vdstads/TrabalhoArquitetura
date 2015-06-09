@@ -40,6 +40,22 @@ public class PerfilProfessor implements Serializable {
     @Column(length = 150, nullable = false)
     private String nomeMae;
 
+    public PerfilProfessor(String nome, String estadoCivil, BigDecimal renda, String nomePai, String nomeMae) {
+        this.nome = nome;
+        this.estadoCivil = estadoCivil;
+        this.renda = renda;
+        this.nomePai = nomePai;
+        this.nomeMae = nomeMae;
+    }
+
+    public PerfilProfessor() {
+        this.nome = "";
+        this.estadoCivil = "";
+        this.renda = new BigDecimal(0.00);
+        this.nomePai = "";
+        this.nomeMae = "";
+    }
+
     public Long getId() {
         return id;
     }

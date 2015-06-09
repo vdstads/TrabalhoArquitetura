@@ -30,6 +30,16 @@ public class TipoProducao implements Serializable {
     @Column(length = 150, nullable = false)
     private String artigo;
 
+    public TipoProducao(String tcc, String artigo) {
+        this.tcc = tcc;
+        this.artigo = artigo;
+    }
+
+    public TipoProducao() {
+        this.tcc = "";
+        this.artigo = "";
+    }
+
     public Long getId() {
         return id;
     }
