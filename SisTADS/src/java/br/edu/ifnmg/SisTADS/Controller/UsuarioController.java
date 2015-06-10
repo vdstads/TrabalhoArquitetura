@@ -1,50 +1,67 @@
-package br.edu.ifnmg.SisTADS.Controller;
-
-import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.UsuarioRepositorio;
-import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
-import java.io.Serializable;
-import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package br.edu.ifnmg.SisTADS.Controller;
+
+import br.edu.ifnmg.SisTADS.DomainModel.Professor;
+import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.UsuarioRepositorio;
+import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author andre
  */
-@Named(value = "usuarioController")
+@ManagedBean
 @SessionScoped
-public class UsuarioController implements Serializable{
+public class UsuarioController extends ControllerGenerico<Usuario> implements Serializable {
 
-    private Usuario entidade;
-    private Usuario filtro;
-
-    @EJB
-    private UsuarioRepositorio dao;
-
+    /**
+     * Creates a new instance of UsuarioController
+     */
     public UsuarioController() {
+        super("index.xhtml", "cadastroUsuario.xhtml");
         entidade = new Usuario();
         filtro = new Usuario();
     }
 
-    public Usuario getEntidade() {
-        return entidade;
+    @EJB
+    private UsuarioRepositorio repositorio;
+
+    public void login() {
+        try{
+            Usuario usuario = repositorio.login(entidade);
+            HttpSession session;
+            FacesContext context = FacesContext.getCurrentInstance();
+            session = (HttpSession) context.getExternalContext().getSession(false);
+            session.setAttribute("usuario", usuario);
+            if(usuario.getNivel().equals("Administrador")){
+                FacesContext.getCurrentInstance().getExternalContext().redirect("admin/index.xhtml");
+            }else if(usuario.getNivel().equals("Professor")){
+                Professor professor = repositorio.verificarProfessor(usuario);
+                if(professor == null){
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("cadastroEscola.xhtml");
+                }else{
+                    MensagemErro("", "tem");
+                }
+            }
+        }catch(Exception e){
+            MensagemErro("Erro", "Dados Inválidos");
+        }
     }
 
-    public void setEntidade(Usuario entidade) {
-        this.entidade = entidade;
-    }
-
-    public Usuario getFiltro() {
-        return filtro;
-    }
-
-    public void setFiltro(Usuario filtro) {
-        this.filtro = filtro;
+    @PostConstruct
+    public void configurar() {
+        setDao(repositorio);
     }
 
 }

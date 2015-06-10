@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <p:panelGrid columns="2" style="position: relative; left: 40%">
+            <f:facet name="header">
+                Cadastro de Usuário
+            </f:facet>
+            Email:
+            <p:inputText value="#{usuarioController.entidade.email}"/>
+            Senha:
+            <p:password feedback="true" promptLabel="Digite a Senha" weakLabel="Fraco" 
+                        goodLabel="Bom" strongLabel="Excelente" value="#{usuarioController.entidade.senha}"/>
+            Nível:
+            <p:selectOneRadio value="#{usuarioController.entidade.nivel}">
+                <f:selectItem itemLabel="Professor" itemValue="Professor"/>
+                <f:selectItem itemLabel="Aluno" itemValue="Aluno"/>
+            </p:selectOneRadio>
+            <ui:include src="componentes/botalSalvar.xhtml">
+                <ui:param name="controller" value="#{usuarioController}"/>
+            </ui:include>
+        </p:panelGrid>
+    </ui:define>
+
+</ui:composition>

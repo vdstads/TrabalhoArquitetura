@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <p:panelGrid columns="2" style="position: relative; left: 35%">
+            <f:facet name="header">
+                Cadastro do Professor
+            </f:facet>
+            Nome:
+            <p:inputText value="#{professorController.entidade.nome}"/>
+            Cpf:
+            <p:inputMask mask="999.999.999-99" style="width: 100%" value="#{professorController.entidade.cpf}"/>
+            Sexo:
+            <p:selectOneRadio value="#{professorController.entidade.sexo}">
+                <f:selectItem itemLabel="F" itemValue="F"/>
+                <f:selectItem itemLabel="M" itemValue="M"/>
+            </p:selectOneRadio>
+            Curriculo Lattes:
+            <p:inputText style="width: 100%" value="#{professorController.entidade.curriculoLattes}"/>
+            Estado Civil:
+            <p:selectOneRadio value="#{professorController.entidade.estadoCivil}">
+                <f:selectItem itemLabel="Solteiro" itemValue="Solteiro"/>
+                <f:selectItem itemLabel="Casado" itemValue="Casado"/>
+                <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/>
+                <f:selectItem itemLabel="Viuvo" itemValue="Viuvo"/>
+            </p:selectOneRadio>
+            Pai:
+            <p:inputText style="width: 100%" value="#{professorController.entidade.nomePai}"/>
+            Mãe:
+            <p:inputText style="width: 100%" value="#{professorController.entidade.nomeMae}"/>
+            Renda:
+            <p:inputText style="width: 100%"/>
+            <ui:include src="componentes/botalSalvar.xhtml">
+                <ui:param name="controller" value="#{professorController}"/>
+            </ui:include>
+        </p:panelGrid>
+    </ui:define>
+
+</ui:composition>

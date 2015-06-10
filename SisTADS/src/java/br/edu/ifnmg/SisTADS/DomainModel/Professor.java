@@ -6,11 +6,14 @@
 package br.edu.ifnmg.SisTADS.DomainModel;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -35,25 +38,24 @@ public class Professor implements Serializable {
     private String cpf;
 
     @Column(length = 150, nullable = false)
+    private String estadoCivil;
+
+    @Column(precision = 8, scale = 2)
+    private BigDecimal renda;
+
+    @Column(length = 150, nullable = false)
+    private String nomePai;
+
+    @Column(length = 150, nullable = false)
+    private String nomeMae;
+
+    @Column(length = 150, nullable = false)
     private String curriculoLattes;
 
-    @OneToOne
-    private PerfilProfessor perfilProfessor;
-
-    public Professor(String nome, String sexo, String cpf, String curriculoLattes, PerfilProfessor idPerfilProfessor) {
-        this.nome = nome;
-        this.sexo = sexo;
-        this.cpf = cpf;
-        this.curriculoLattes = curriculoLattes;
-        this.perfilProfessor = idPerfilProfessor;
-    }
+    @ManyToOne
+    private Usuario usuario;
 
     public Professor() {
-        this.nome = "";
-        this.sexo = "";
-        this.cpf = "";
-        this.curriculoLattes = "";
-        this.perfilProfessor = new PerfilProfessor();
     }
 
     public Long getId() {
@@ -81,11 +83,49 @@ public class Professor implements Serializable {
     }
 
     public String getCpf() {
-        return cpf;
+        if (cpf.length() < 11) {
+            return "";
+        }
+        return cpf.substring(0, 3).concat(".")
+                + cpf.substring(3, 6).concat(".")
+                + cpf.substring(6, 9).concat("-")
+                + cpf.substring(9, 11);
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.cpf = cpf.replace(".", "").replace("-", "");;
+    }
+
+    public String getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
+
+    public BigDecimal getRenda() {
+        return renda;
+    }
+
+    public void setRenda(BigDecimal renda) {
+        this.renda = renda;
+    }
+
+    public String getNomePai() {
+        return nomePai;
+    }
+
+    public void setNomePai(String nomePai) {
+        this.nomePai = nomePai;
+    }
+
+    public String getNomeMae() {
+        return nomeMae;
+    }
+
+    public void setNomeMae(String nomeMae) {
+        this.nomeMae = nomeMae;
     }
 
     public String getCurriculoLattes() {
@@ -96,12 +136,12 @@ public class Professor implements Serializable {
         this.curriculoLattes = curriculoLattes;
     }
 
-    public PerfilProfessor getPerfilProfessor() {
-        return perfilProfessor;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setPerfilProfessor(PerfilProfessor perfilProfessor) {
-        this.perfilProfessor = perfilProfessor;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
