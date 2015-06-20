@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -28,11 +28,11 @@ public class Oferta implements Serializable {
 
     @Column(length = 500, nullable = false)
     private String semestre;
-    @OneToMany
+    @ManyToOne
     private Professor professor;
-    @OneToMany
+    @ManyToOne
     private Disciplina disciplina;
-    @OneToMany
+    @ManyToOne
     private Turma turma;
 
     public Oferta() {

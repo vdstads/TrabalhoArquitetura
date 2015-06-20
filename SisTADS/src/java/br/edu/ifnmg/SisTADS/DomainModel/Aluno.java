@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -58,10 +57,10 @@ public class Aluno implements Serializable {
     @Column(length = 500, nullable = false)
     private String nomePai;
 
-    @OneToMany
+    @ManyToOne
     private InstituicaoFutura instituicaoFutura;
 
-    @OneToMany
+    @ManyToOne
     private EscolaAnterior escolaAnterior;
 
     @ManyToOne

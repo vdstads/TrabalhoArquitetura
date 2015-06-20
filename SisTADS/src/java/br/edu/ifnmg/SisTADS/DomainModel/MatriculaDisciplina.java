@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -25,9 +26,9 @@ public class MatriculaDisciplina implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @ManyToOne
     private Aluno aluno;
-    @OneToMany
+    @ManyToOne
     private Oferta oferta;
 
     public MatriculaDisciplina() {

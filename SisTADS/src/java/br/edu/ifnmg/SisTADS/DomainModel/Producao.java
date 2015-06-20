@@ -13,7 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -31,16 +31,16 @@ public class Producao implements Serializable {
 
     @Column(length = 500, nullable = false)
     private String nome;
-    @OneToMany
+    @ManyToOne
     private Professor professor;
 
-    @OneToMany
+    @ManyToOne
     private Aluno aluno;
 
     @Temporal(TemporalType.DATE)
     private Date data;
 
-    @OneToMany
+    @ManyToOne
     private TipoProducao tipoProducao;
 
     public Producao() {
