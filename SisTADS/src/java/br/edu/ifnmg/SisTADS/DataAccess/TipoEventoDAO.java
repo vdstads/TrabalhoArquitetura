@@ -9,11 +9,13 @@ package br.edu.ifnmg.SisTADS.DataAccess;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.TipoEventoRepositorio;
 import br.edu.ifnmg.SisTADS.DomainModel.TipoEvento;
 import java.util.List;
+import javax.ejb.Singleton;
 
 /**
  *
  * @author Mauro
  */
+@Singleton
 public class TipoEventoDAO extends DAOGenerico<TipoEvento> implements TipoEventoRepositorio{
      
     public TipoEventoDAO(){
@@ -25,9 +27,9 @@ public class TipoEventoDAO extends DAOGenerico<TipoEvento> implements TipoEvento
     @Override
     public List<TipoEvento> Buscar(TipoEvento filtro) {
         
-        return Like("viagem", filtro.getViajem())
+        return Like("nome", filtro.getNome())
                .IgualA("id", filtro.getId())
-               .OrderBy("viagem", "ASC")
+               .OrderBy("nome", "ASC")
                .Buscar();
     }
 }

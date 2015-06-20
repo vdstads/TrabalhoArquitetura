@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.SisTADS.DomainModel.Repositorios;
 
-import br.edu.ifnmg.SisTADS.DomainModel.Curso;
+import br.edu.ifnmg.SisTADS.DomainModel.Oferta;
 import javax.ejb.Local;
 
 /**
  *
- * @author Mauro
+ * @author andre
  */
 @Local
-public interface CursoRepositorio extends Repositorio<Curso>{
+public interface OfertaRepositorio extends Repositorio<Oferta>{
     
 }

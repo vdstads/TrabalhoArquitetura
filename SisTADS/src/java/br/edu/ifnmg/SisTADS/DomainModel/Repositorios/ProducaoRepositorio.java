@@ -7,11 +7,13 @@
 package br.edu.ifnmg.SisTADS.DomainModel.Repositorios;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Producao;
+import javax.ejb.Local;
 
 /**
  *
  * @author Mauro
  */
+@Local
 public interface ProducaoRepositorio extends Repositorio<Producao>{
     
 }

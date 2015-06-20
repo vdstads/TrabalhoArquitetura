@@ -30,19 +30,9 @@ public class Disciplina implements Serializable {
 
     private int cargaHoraria;
 
-    @ManyToOne
-    private Professor professor;
-
-    public Disciplina(String nome, int cargaHoraria, Professor idProfessor) {
-        this.nome = nome;
-        this.cargaHoraria = cargaHoraria;
-        this.professor = idProfessor;
-    }
-
     public Disciplina() {
         this.nome = "";
         this.cargaHoraria = 0;
-        this.professor = new Professor();
     }
 
     public Long getId() {
@@ -67,14 +57,6 @@ public class Disciplina implements Serializable {
 
     public void setCargaHoraria(int cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
-    }
-
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
     }
 
     @Override

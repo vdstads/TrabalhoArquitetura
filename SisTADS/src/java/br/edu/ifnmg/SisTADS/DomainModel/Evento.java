@@ -7,13 +7,12 @@ package br.edu.ifnmg.SisTADS.DomainModel;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -29,30 +28,20 @@ public class Evento implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 150, nullable = false)
+    @Column(length = 500, nullable = false)
     private String nome;
-
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date data;
-
-    @ManyToOne
+    @OneToMany
     private TipoEvento tipoEvento;
-
-    @ManyToOne
+    @OneToMany
     private Cidade cidade;
 
-    public Evento(String nome, Date data, TipoEvento idTipoEvento, Cidade idCidade) {
-        this.nome = nome;
-        this.data = data;
-        this.tipoEvento = idTipoEvento;
-        this.cidade = idCidade;
-    }
-
     public Evento() {
-        this.nome = "";
-        this.data = new Date();
-        this.tipoEvento = new TipoEvento();
-        this.cidade = new Cidade();
+        nome = "";
+        data = new Date();
+        tipoEvento = new TipoEvento();;
+        cidade = new Cidade();
     }
 
     public Long getId() {
@@ -97,26 +86,19 @@ public class Evento implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.tipoEvento);
-        hash = 97 * hash + Objects.hashCode(this.cidade);
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (object == null) {
+        if (!(object instanceof Evento)) {
             return false;
         }
-        if (getClass() != object.getClass()) {
-            return false;
-        }
-        final Evento other = (Evento) object;
-        if (!Objects.equals(this.tipoEvento, other.tipoEvento)) {
-            return false;
-        }
-        if (!Objects.equals(this.cidade, other.cidade)) {
+        Evento other = (Evento) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;

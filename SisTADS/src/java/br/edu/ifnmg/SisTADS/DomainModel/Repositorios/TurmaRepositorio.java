@@ -6,11 +6,13 @@
 package br.edu.ifnmg.SisTADS.DomainModel.Repositorios;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Turma;
+import javax.ejb.Local;
 
 /**
  *
  * @author andre
  */
+@Local
 public interface TurmaRepositorio extends Repositorio<Turma> {
     
 }

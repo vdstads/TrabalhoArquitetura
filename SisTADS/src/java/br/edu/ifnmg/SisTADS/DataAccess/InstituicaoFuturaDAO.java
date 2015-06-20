@@ -9,11 +9,13 @@ package br.edu.ifnmg.SisTADS.DataAccess;
 import br.edu.ifnmg.SisTADS.DomainModel.InstituicaoFutura;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.InstituicaoFuturaRepositorio;
 import java.util.List;
+import javax.ejb.Singleton;
 
 /**
  *
  * @author Mauro
  */
+@Singleton
 public class InstituicaoFuturaDAO extends DAOGenerico<InstituicaoFutura> implements InstituicaoFuturaRepositorio{
     
     public InstituicaoFuturaDAO(){

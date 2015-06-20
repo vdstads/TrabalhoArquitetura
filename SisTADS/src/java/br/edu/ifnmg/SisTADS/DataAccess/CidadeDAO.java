@@ -9,11 +9,13 @@ package br.edu.ifnmg.SisTADS.DataAccess;
 import br.edu.ifnmg.SisTADS.DomainModel.Cidade;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.CidadeRepositorio;
 import java.util.List;
+import javax.ejb.Singleton;
 
 /**
  *
  * @author Mauro
  */
+@Singleton
 public class CidadeDAO extends DAOGenerico<Cidade> implements CidadeRepositorio{
     
     

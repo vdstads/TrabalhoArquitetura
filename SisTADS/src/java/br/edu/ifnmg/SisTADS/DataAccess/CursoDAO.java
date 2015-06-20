@@ -9,11 +9,13 @@ package br.edu.ifnmg.SisTADS.DataAccess;
 import br.edu.ifnmg.SisTADS.DomainModel.Curso;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.CursoRepositorio;
 import java.util.List;
+import javax.ejb.Singleton;
 
 /**
  *
  * @author Mauro
  */
+@Singleton
 public class CursoDAO extends DAOGenerico<Curso> implements CursoRepositorio{
     
     

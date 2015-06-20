@@ -9,11 +9,13 @@ package br.edu.ifnmg.SisTADS.DataAccess;
 import br.edu.ifnmg.SisTADS.DomainModel.Disciplina;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.DisciplinaRepositorio;
 import java.util.List;
+import javax.ejb.Singleton;
 
 /**
  *
  * @author Mauro
  */
+@Singleton
 public class DisciplinaDAO extends DAOGenerico<Disciplina> implements DisciplinaRepositorio{
     
     

@@ -6,11 +6,14 @@
 package br.edu.ifnmg.SisTADS.DomainModel;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -24,20 +27,11 @@ public class TipoProducao implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 150, nullable = false)
-    private String tcc;
-
-    @Column(length = 150, nullable = false)
-    private String artigo;
-
-    public TipoProducao(String tcc, String artigo) {
-        this.tcc = tcc;
-        this.artigo = artigo;
-    }
+    @Column(length = 500, nullable = false, unique = true)
+    private String nome;
 
     public TipoProducao() {
-        this.tcc = "";
-        this.artigo = "";
+        this.nome = "";
     }
 
     public Long getId() {
@@ -48,20 +42,12 @@ public class TipoProducao implements Serializable {
         this.id = id;
     }
 
-    public String getTcc() {
-        return tcc;
+    public String getNome() {
+        return nome;
     }
 
-    public void setTcc(String tcc) {
-        this.tcc = tcc;
-    }
-
-    public String getArtigo() {
-        return artigo;
-    }
-
-    public void setArtigo(String artigo) {
-        this.artigo = artigo;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     @Override

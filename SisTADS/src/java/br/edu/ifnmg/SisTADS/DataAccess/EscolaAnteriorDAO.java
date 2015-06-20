@@ -9,11 +9,13 @@ package br.edu.ifnmg.SisTADS.DataAccess;
 import br.edu.ifnmg.SisTADS.DomainModel.EscolaAnterior;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.EscolaAnteriorRepositorio;
 import java.util.List;
+import javax.ejb.Singleton;
 
 /**
  *
  * @author Mauro
  */
+@Singleton
 public class EscolaAnteriorDAO extends DAOGenerico<EscolaAnterior> implements EscolaAnteriorRepositorio{
  
     public EscolaAnteriorDAO(){

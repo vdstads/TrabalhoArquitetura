@@ -9,11 +9,13 @@ package br.edu.ifnmg.SisTADS.DataAccess;
 import br.edu.ifnmg.SisTADS.DomainModel.Evento;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.EventoRepositorio;
 import java.util.List;
+import javax.ejb.Singleton;
 
 /**
  *
  * @author Mauro
  */
+@Singleton
 public class EventoDAO extends DAOGenerico<Evento> implements EventoRepositorio{
     
     public EventoDAO(){

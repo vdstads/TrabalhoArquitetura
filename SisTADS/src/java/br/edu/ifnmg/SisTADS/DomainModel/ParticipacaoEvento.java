@@ -6,38 +6,40 @@
 package br.edu.ifnmg.SisTADS.DomainModel;
 
 import java.io.Serializable;
-import javax.persistence.Column;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author andre
  */
 @Entity
-public class Cidade implements Serializable {
+public class ParticipacaoEvento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 150, nullable = false,unique = true)
-    private String nome;
+    @OneToMany
+    private Aluno aluno;
 
-    @Column(length = 2, nullable = false)
-    private String estado;
+    @OneToMany
+    private Evento evento;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date data;
 
-    public Cidade() {
-        this.nome = "";
-        this.estado = "";
-    }
-
-    public Cidade(String nome, String estado) {
-        this.nome = nome;
-        this.estado = estado;
+    public ParticipacaoEvento() {
+        this.aluno = new Aluno();
+        this.evento = new Evento();
+        this.data = new Date();
     }
 
     public Long getId() {
@@ -48,20 +50,20 @@ public class Cidade implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
-    public String getEstado() {
-        return estado;
+    public Evento getEvento() {
+        return evento;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
 
     @Override
@@ -74,10 +76,10 @@ public class Cidade implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cidade)) {
+        if (!(object instanceof ParticipacaoEvento)) {
             return false;
         }
-        Cidade other = (Cidade) object;
+        ParticipacaoEvento other = (ParticipacaoEvento) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -86,7 +88,7 @@ public class Cidade implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.Cidade[ id=" + id + " ]";
+        return "br.edu.ifnmg.SisTADS.DomainModel.ParticipacaoEvento[ id=" + id + " ]";
     }
 
 }

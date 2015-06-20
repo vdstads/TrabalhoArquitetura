@@ -7,11 +7,13 @@
 package br.edu.ifnmg.SisTADS.DomainModel.Repositorios;
 
 import br.edu.ifnmg.SisTADS.DomainModel.TipoEvento;
+import javax.ejb.Local;
 
 /**
  *
  * @author Mauro
  */
+@Local
 public interface TipoEventoRepositorio extends Repositorio<TipoEvento>{
     
 }

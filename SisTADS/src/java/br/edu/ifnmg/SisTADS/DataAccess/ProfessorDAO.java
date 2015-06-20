@@ -8,12 +8,14 @@ package br.edu.ifnmg.SisTADS.DataAccess;
 import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.ProfessorRepositorio;
 import java.util.List;
+import javax.ejb.Singleton;
 import javax.persistence.Query;
 
 /**
  *
  * @author andre
  */
+@Singleton
 public class ProfessorDAO extends DAOGenerico<Professor> implements ProfessorRepositorio{
     
      public ProfessorDAO() {

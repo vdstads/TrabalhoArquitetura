@@ -8,29 +8,30 @@ package br.edu.ifnmg.SisTADS.DataAccess;
 import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.AlunoRepositorio;
 import java.util.List;
+import javax.ejb.Singleton;
 
 /**
  *
  * @author Mauro
  */
-public class AlunoDAO extends DAOGenerico<Aluno> implements AlunoRepositorio{
-    
-    public AlunoDAO(){
+@Singleton
+public class AlunoDAO extends DAOGenerico<Aluno> implements AlunoRepositorio {
+
+    public AlunoDAO() {
         super(Aluno.class);
     }
-    
-    
+
     @Override
     public List<Aluno> Buscar(Aluno filtro) {
-        
+
         return Like("nome", filtro.getNome())
-               .IgualA("id", filtro.getId())
-               .IgualA("sexo", filtro.getSexo())
-               .IgualA("data", filtro.getData())
-               .IgualA("matricula",filtro.getMatricula())
-               .IgualA("telefone", filtro.getTelefone())
-               .IgualA("rg", filtro.getRg())
-               .OrderBy("nome", "ASC")
-               .Buscar();
+                .IgualA("id", filtro.getId())
+                .IgualA("sexo", filtro.getSexo())
+                .IgualA("dataNascimento", filtro.getDataNascimento())
+                .IgualA("matricula", filtro.getMatricula())
+                .IgualA("telefone", filtro.getTelefone())
+                .IgualA("rg", filtro.getRg())
+                .OrderBy("nome", "ASC")
+                .Buscar();
     }
 }
