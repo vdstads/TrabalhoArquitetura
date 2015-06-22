@@ -6,10 +6,10 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        <p:panelGrid columns="2" style="position: relative; left: 40%">
-            <f:facet name="header">
-                Cadastro de Usuário
-            </f:facet>
+        <f:facet name="header">
+            Cadastro de Usuário
+        </f:facet>
+        <p:panelGrid columns="2">
             Email:
             <p:inputText value="#{usuarioController.entidade.email}"/>
             Senha:

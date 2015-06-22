@@ -6,34 +6,34 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        <p:panelGrid columns="2" style="position: relative; left: 35%">
-            <f:facet name="header">
-                Cadastro do Professor
-            </f:facet>
+        <f:facet name="header">
+            Cadastro de Professor
+        </f:facet>
+        <p:panelGrid columns="2">
             Nome:
             <p:inputText value="#{professorController.entidade.nome}"/>
             Cpf:
-            <p:inputMask mask="999.999.999-99" style="width: 100%" value="#{professorController.entidade.cpf}"/>
+            <p:inputMask mask="999.999.999-99" value="#{professorController.entidade.cpf}"/>
             Sexo:
             <p:selectOneRadio value="#{professorController.entidade.sexo}">
-                <f:selectItem itemLabel="F" itemValue="F"/>
                 <f:selectItem itemLabel="M" itemValue="M"/>
+                <f:selectItem itemLabel="F" itemValue="F"/>
             </p:selectOneRadio>
-            Curriculo Lattes:
-            <p:inputText style="width: 100%" value="#{professorController.entidade.curriculoLattes}"/>
             Estado Civil:
             <p:selectOneRadio value="#{professorController.entidade.estadoCivil}">
                 <f:selectItem itemLabel="Solteiro" itemValue="Solteiro"/>
                 <f:selectItem itemLabel="Casado" itemValue="Casado"/>
                 <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/>
-                <f:selectItem itemLabel="Viuvo" itemValue="Viuvo"/>
+                <f:selectItem itemLabel="Viúvo" itemValue="Viúvo"/>
             </p:selectOneRadio>
-            Pai:
-            <p:inputText style="width: 100%" value="#{professorController.entidade.nomePai}"/>
             Mãe:
-            <p:inputText style="width: 100%" value="#{professorController.entidade.nomeMae}"/>
+            <p:inputText value="#{professorController.entidade.nomeMae}"/>
+            Pai:
+            <p:inputText value="#{professorController.entidade.nomePai}"/>
             Renda:
-            <p:inputText style="width: 100%"/>
+            <p:spinner value="#{professorController.entidade.renda}"/>
+            CurriculoLattes:
+            <p:inputText value="#{professorController.entidade.curriculoLattes}"/>
             <ui:include src="componentes/botalSalvar.xhtml">
                 <ui:param name="controller" value="#{professorController}"/>
             </ui:include>

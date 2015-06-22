@@ -72,12 +72,13 @@ public class ControllerGenerico<T> {
         context.getExternalContext().getFlash().setKeepMessages(true);
     }
 
-    public void salvar() {
+    public String salvar() {
         if (dao.Salvar(entidade)) {
             MensagemSucesso("Sucesso!", "Registro salvo com sucesso!");
-            novo();
+            return paginaListagem;
         } else {
             MensagemErro("Erro!", "Consulte o administrador do sistema!");
+            return "";
         }
 
     }
@@ -91,6 +92,12 @@ public class ControllerGenerico<T> {
             return null;
         }
 
+    }
+
+    public void editar() {
+        dao.Apagar(entidade);
+        dao.Salvar(entidade);
+        MensagemSucesso("Sucesso!", "Registro Editado com sucesso!");
     }
 
     public String voltar() {

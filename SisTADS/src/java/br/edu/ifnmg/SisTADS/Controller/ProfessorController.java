@@ -7,12 +7,14 @@ package br.edu.ifnmg.SisTADS.Controller;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.ProfessorRepositorio;
-import javax.inject.Named;
+import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,6 +35,11 @@ public class ProfessorController extends ControllerGenerico<Professor> implement
 
     @EJB
     private ProfessorRepositorio repositorio;
+
+    @Override
+    public String voltar() {
+        return "index.xhtml";
+    }
 
     @PostConstruct
     public void configurar() {

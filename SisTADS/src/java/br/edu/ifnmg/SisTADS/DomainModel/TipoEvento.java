@@ -29,7 +29,7 @@ public class TipoEvento implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 500, nullable = false)
+    @Column(length = 500, nullable = false, unique = true)
     private String nome;
 
     public TipoEvento() {

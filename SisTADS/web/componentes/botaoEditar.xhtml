@@ -14,7 +14,7 @@
     <p:confirmDialog id="confirmaSalvar" message="Deseja realmente salvar as alterações?"  
                      header="Confirmação" severity="alert" widgetVar="msgSalvar">  
 
-        <p:commandButton ajax="false" value="SIM" action="#{controller.salvar()}" />  
+        <p:commandButton ajax="false" value="SIM" action="#{controller.editar()}" />  
         <p:commandButton value="NÃO" onclick="msgSalvar.hide();" type="button" />   
     </p:confirmDialog>  
 

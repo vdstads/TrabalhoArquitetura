@@ -43,10 +43,12 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements UsuarioRepositor
     @Override
     public Professor verificarProfessor(Usuario usuario) {
         try {
-            Query consulta = manager.createQuery("select o from Professor o "
-                    + "where o.usuario_id = :usuario");
-            consulta.setParameter("usuario", usuario);
-            return (Professor) consulta.getSingleResult();
+            String Consulta = "select o from Escola o";
+            if (usuario != null) {
+                Consulta = Consulta + " where o.usuario_id = " + usuario.getId().toString() + "";
+            }
+            Query query = manager.createQuery(Consulta);
+            return (Professor) query.getSingleResult();
         } catch (Exception e) {
             return null;
         }

@@ -8,9 +8,9 @@ package br.edu.ifnmg.SisTADS.Controller;
 import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.UsuarioRepositorio;
 import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Enumeration;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -37,26 +37,43 @@ public class UsuarioController extends ControllerGenerico<Usuario> implements Se
     @EJB
     private UsuarioRepositorio repositorio;
 
-    public void login() {
-        try{
-            Usuario usuario = repositorio.login(entidade);
-            HttpSession session;
-            FacesContext context = FacesContext.getCurrentInstance();
-            session = (HttpSession) context.getExternalContext().getSession(false);
-            session.setAttribute("usuario", usuario);
-            if(usuario.getNivel().equals("Administrador")){
-                FacesContext.getCurrentInstance().getExternalContext().redirect("admin/index.xhtml");
-            }else if(usuario.getNivel().equals("Professor")){
-                Professor professor = repositorio.verificarProfessor(usuario);
-                if(professor == null){
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("cadastroEscola.xhtml");
-                }else{
-                    MensagemErro("", "tem");
-                }
-            }
-        }catch(Exception e){
-            MensagemErro("Erro", "Dados Inválidos");
+    public String logout() {
+        HttpSession session;
+        FacesContext context = FacesContext.getCurrentInstance();
+        session = (HttpSession) context.getExternalContext().getSession(false);
+        session.setAttribute("usuario", null);
+
+        Enumeration<String> vals = session.getAttributeNames();
+
+        while (vals.hasMoreElements()) {
+            session.removeAttribute(vals.nextElement());
         }
+        return "/index.xhtml";
+    }
+
+    public String login() {
+        Usuario usuario = repositorio.login(entidade);
+        HttpSession session;
+        FacesContext context = FacesContext.getCurrentInstance();
+        session = (HttpSession) context.getExternalContext().getSession(false);
+        session.setAttribute("usuario", usuario);
+        if (usuario.getNivel().equals("Administrador")) {
+            try {
+                return "admin/index.xhtml";
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "index.xhtml";
+            }
+        } else if (usuario.getNivel().equals("Professor")) {
+            Professor professor = repositorio.verificarProfessor(usuario);
+            if (professor == null) {
+                return "cadastroProfessor.xhtml";
+            } else {
+                MensagemErro("", "tem");
+                return "index.xhtml";
+            }
+        }
+        return "index.xhtml";
     }
 
     @PostConstruct

@@ -6,6 +6,9 @@
 package br.edu.ifnmg.SisTADS.DomainModel;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -63,7 +66,7 @@ public class Usuario implements Serializable {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = criptografica(senha);
     }
 
     public String getNivel() {
@@ -99,4 +102,28 @@ public class Usuario implements Serializable {
         return "br.edu.ifnmg.SisTADS.DomainModel.Usuario[ id=" + id + " ]";
     }
 
+    public String criptografica(String input) {
+        String md5 = null;
+
+        if (input.isEmpty()) {
+            return "";
+        }
+
+        try {
+
+            //Create MessageDigest object for MD5  
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+
+            //Update input string in message digest  
+            digest.update(input.getBytes(), 0, input.length());
+
+            //Converts message digest value in base 16 (hex)   
+            md5 = new BigInteger(1, digest.digest()).toString(16);
+
+        } catch (NoSuchAlgorithmException e) {
+
+            e.printStackTrace();
+        }
+        return md5;
+    }
 }

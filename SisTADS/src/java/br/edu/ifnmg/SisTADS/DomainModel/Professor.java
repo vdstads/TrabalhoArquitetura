@@ -28,13 +28,13 @@ public class Professor implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 150, nullable = false)
+    @Column(length = 150, nullable = false, unique = true)
     private String nome;
 
     @Column(length = 1, nullable = false)
     private String sexo;
 
-    @Column(length = 14, nullable = false)
+    @Column(length = 14, nullable = false, unique = true)
     private String cpf;
 
     @Column(length = 150, nullable = false)
@@ -49,7 +49,7 @@ public class Professor implements Serializable {
     @Column(length = 150, nullable = false)
     private String nomeMae;
 
-    @Column(length = 150, nullable = false)
+    @Column(length = 150, nullable = false, unique = true)
     private String curriculoLattes;
 
     @ManyToOne
@@ -83,17 +83,11 @@ public class Professor implements Serializable {
     }
 
     public String getCpf() {
-        if (cpf.length() < 11) {
-            return "";
-        }
-        return cpf.substring(0, 3).concat(".")
-                + cpf.substring(3, 6).concat(".")
-                + cpf.substring(6, 9).concat("-")
-                + cpf.substring(9, 11);
+        return this.cpf;
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf.replace(".", "").replace("-", "");;
+        this.cpf = cpf;
     }
 
     public String getEstadoCivil() {

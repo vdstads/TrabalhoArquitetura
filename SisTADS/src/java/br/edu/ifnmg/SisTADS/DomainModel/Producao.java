@@ -29,7 +29,7 @@ public class Producao implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 500, nullable = false)
+    @Column(length = 500, nullable = false, unique = true)
     private String nome;
     @ManyToOne
     private Professor professor;

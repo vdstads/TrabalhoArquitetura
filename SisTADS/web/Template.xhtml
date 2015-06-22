@@ -14,14 +14,12 @@
 
     <h:body>
 
-        <div style="background-color: brown; width: 100%; height: 200px; font-weight: bold; font-size: 50px; text-align: center;">
-            <br/>Logo Aqui...
-        </div>
-
         <h:form>
-            <p:growl id="global"/>
             <div id="content" class="center_content">
-                <ui:insert name="content">Content</ui:insert>
+                <p:growl id="global"/>
+                <p:panel>
+                    <ui:insert name="content">Content</ui:insert>
+                </p:panel>
             </div>
         </h:form>
 

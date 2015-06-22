@@ -30,7 +30,6 @@ public class DisciplinaDAO extends DAOGenerico<Disciplina> implements Disciplina
         
         return Like("nome", filtro.getNome())
                .IgualA("id", filtro.getId())
-               .IgualA("cargaHoraria", filtro.getCargaHoraria())
                .OrderBy("nome", "ASC")
                .Buscar();
     }
