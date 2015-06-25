@@ -74,7 +74,7 @@ public class TipoEvento implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.TipoEvento[ id=" + id + " ]";
+        return this.nome;
     }
 
 }

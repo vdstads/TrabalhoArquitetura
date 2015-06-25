@@ -24,7 +24,7 @@ public class Cidade implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 150, nullable = false,unique = true)
+    @Column(length = 150, nullable = false, unique = true)
     private String nome;
 
     @Column(length = 2, nullable = false)
@@ -86,7 +86,7 @@ public class Cidade implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.Cidade[ id=" + id + " ]";
+        return this.nome + " (" + this.estado + ")";
     }
 
 }

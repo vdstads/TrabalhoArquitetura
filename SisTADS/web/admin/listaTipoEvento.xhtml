@@ -7,20 +7,22 @@
 
     <ui:define name="content">
         <p:panelGrid columns="2">
-            Tipo de Evento:
-            <p:selectOneMenu value="#{eventoController.filtro.tipoEvento}">
-                <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
-            </p:selectOneMenu>
-            Cidade:
-            <p:selectOneMenu value="#{eventoController.filtro.cidade}">
-                <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
-            </p:selectOneMenu>
+            Nome:
+            <p:inputText value="#{tipoEventoController.filtro.nome}"/>
             <f:facet name="footer">
                 <ui:include src="../componentes/botaoListagem.xhtml">
-                    <ui:param name="controller" value="#{eventoController}"/>
+                    <ui:param name="controller" value="#{tipoEventoController}"/>
                 </ui:include>
             </f:facet>
         </p:panelGrid>
+        <p:dataTable value="#{tipoEventoController.listagem}" var="item">
+            <p:column headerText="ID" width="30">
+                #{item.id}
+            </p:column>
+            <p:column headerText="Nome">
+                #{item.nome}
+            </p:column>
+        </p:dataTable>
     </ui:define>
 
 </ui:composition>

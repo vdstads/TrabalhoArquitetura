@@ -8,15 +8,17 @@
     <ui:define name="content">
         <p:panelGrid columns="2">
             Tipo de Evento:
-            <p:selectOneMenu value="#{eventoController.filtro.tipoEvento}">
+            <p:selectOneMenu value="#{eventoController.filtro.tipoEvento}" converter="${cidadeConvert}">
                 <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+                <f:selectItems value="#{cidadeController.listagem}"/>
             </p:selectOneMenu>
             Cidade:
-            <p:selectOneMenu value="#{eventoController.filtro.cidade}">
+            <p:selectOneMenu value="#{eventoController.filtro.cidade}" converter="${tipoEventoConvert}">
                 <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+                <f:selectItems value="#{tipoEventoController.listagem}"/>
             </p:selectOneMenu>
             <f:facet name="footer">
-                <ui:include src="../componentes/botaoListagem.xhtml">
+                <ui:include src="../componentes/botalSalvar.xhtml">
                     <ui:param name="controller" value="#{eventoController}"/>
                 </ui:include>
             </f:facet>

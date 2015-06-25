@@ -43,12 +43,16 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements UsuarioRepositor
     @Override
     public Professor verificarProfessor(Usuario usuario) {
         try {
-            String Consulta = "select o from Escola o";
             if (usuario != null) {
-                Consulta = Consulta + " where o.usuario_id = " + usuario.getId().toString() + "";
+                String Consulta = "select o from Professor o join o.usuario u ";
+
+                Consulta = Consulta + " where u.id = " + usuario.getId().toString() + "";
+                Query query = manager.createQuery(Consulta);
+                return (Professor) query.getSingleResult();
+            } else {
+                return null;
             }
-            Query query = manager.createQuery(Consulta);
-            return (Professor) query.getSingleResult();
+
         } catch (Exception e) {
             return null;
         }

@@ -20,7 +20,11 @@
                 <f:facet name="left">
                     <p:commandButton value="Curso" ajax="false" action="listaCurso.xhtml"/>
                     <p:commandButton value="Disciplina" ajax="false" action="listaDisciplina.xhtml"/>
-                    <p:commandButton value="Evento" ajax="false" action="listaEvento.xhtml"/>
+                    <p:menuButton value="Evento">
+                        <p:menuitem value="Cidade" ajax="false" action="listaCidade.xhtml"/>
+                        <p:menuitem value="Tipo de Evento" ajax="false" action="listaTipoEvento.xhtml"/>
+                        <p:menuitem value="Evento" ajax="false" action="listaEvento.xhtml"/>
+                    </p:menuButton>
                 </f:facet>
                 <f:facet name="right">
                     <p:commandButton value="Logout" ajax="false" action="#{usuarioController.logout()}"/>
