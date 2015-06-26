@@ -7,6 +7,10 @@
 
     <ui:define name="content">
         <p:panelGrid columns="2">
+            Nome:
+            <p:inputText value="#{eventoController.entidade.nome}"/>
+            Data:
+            <p:inputMask mask="99/99/9999" value="#{eventoController.entidade.data}"/>
             Tipo de Evento:
             <p:selectOneMenu value="#{eventoController.filtro.tipoEvento}" converter="${cidadeConvert}">
                 <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>

@@ -6,6 +6,8 @@
 package br.edu.ifnmg.SisTADS.DomainModel;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -60,12 +62,24 @@ public class Evento implements Serializable {
         this.nome = nome;
     }
 
-    public Date getData() {
-        return data;
+    public String getData() {
+        SimpleDateFormat dateFormat;
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String dataString;
+        try {
+            Date newData = dateFormat.parse(this.data.toString());
+            dataString = dateFormat.format(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            dataString = null;
+        }
+        return dataString;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setData(String data) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataUtil = new Date(format.parse(data).getTime());
+        this.data = dataUtil;
     }
 
     public TipoEvento getTipoEvento() {
