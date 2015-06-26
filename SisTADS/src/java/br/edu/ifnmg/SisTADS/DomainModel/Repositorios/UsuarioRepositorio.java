@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.SisTADS.DomainModel.Repositorios;
 
+import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
 import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
 import javax.ejb.Local;
@@ -17,4 +18,5 @@ import javax.ejb.Local;
 public interface UsuarioRepositorio extends Repositorio<Usuario>{
     public Usuario login(Usuario usuario);
     public Professor verificarProfessor(Usuario usuario);
+    public Aluno verificarAluno(Usuario usuario);
 }

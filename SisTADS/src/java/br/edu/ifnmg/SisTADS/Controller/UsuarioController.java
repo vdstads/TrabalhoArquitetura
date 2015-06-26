@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.SisTADS.Controller;
 
+import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
 import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.UsuarioRepositorio;
 import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
@@ -70,7 +71,14 @@ public class UsuarioController extends ControllerGenerico<Usuario> implements Se
                 return "cadastroProfessor.xhtml";
             } else {
                 MensagemErro("", "tem");
-                return "index.xhtml";
+                return "professor/index.xhtml";
+            }
+        } else if (usuario.getNivel().equals("Aluno")) {
+            Aluno aluno = repositorio.verificarAluno(usuario);
+            if (aluno == null) {
+                return "/cadastroAluno.xhtml";
+            } else {
+                return "aluno/index.xhtml";
             }
         }
         return "index.xhtml";

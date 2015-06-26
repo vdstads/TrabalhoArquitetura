@@ -80,7 +80,6 @@ public class ControllerGenerico<T> {
             MensagemErro("Erro!", "Consulte o administrador do sistema!");
             return "";
         }
-
     }
 
     public String apagar() {

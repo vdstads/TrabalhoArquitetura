@@ -37,6 +37,23 @@ public class ProfessorController extends ControllerGenerico<Professor> implement
     private ProfessorRepositorio repositorio;
 
     @Override
+    public String salvar() {
+        HttpSession session;
+        FacesContext context = FacesContext.getCurrentInstance();
+        session = (HttpSession) context.getExternalContext().getSession(false);
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        entidade.setUsuario(usuario);
+        if (repositorio.Salvar(entidade)) {
+            MensagemSucesso("Sucesso!", "Registro salvo com sucesso!");
+            return "index.xhtml";
+        } else {
+            MensagemErro("Erro!", "Consulte o administrador do sistema!");
+            return "";
+        }
+
+    }
+
+    @Override
     public String voltar() {
         return "index.xhtml";
     }

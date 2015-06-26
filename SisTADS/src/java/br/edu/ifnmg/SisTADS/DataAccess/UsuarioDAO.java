@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.SisTADS.DataAccess;
 
+import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
 import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.UsuarioRepositorio;
 import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
@@ -49,6 +50,24 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements UsuarioRepositor
                 Consulta = Consulta + " where u.id = " + usuario.getId().toString() + "";
                 Query query = manager.createQuery(Consulta);
                 return (Professor) query.getSingleResult();
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Aluno verificarAluno(Usuario usuario) {
+        try {
+            if (usuario != null) {
+                String Consulta = "select o from Aluno o join o.usuario u ";
+
+                Consulta = Consulta + " where u.id = " + usuario.getId().toString() + "";
+                Query query = manager.createQuery(Consulta);
+                return (Aluno) query.getSingleResult();
             } else {
                 return null;
             }
