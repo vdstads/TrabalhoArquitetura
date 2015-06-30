@@ -22,6 +22,9 @@
             <p:column headerText="Nome">
                 #{item.nome}
             </p:column>
+            <p:column headerText="Editar" width="100">
+                <p:commandButton value="Editar" ajax="false" action="#{tipoEventoController.abrir(item)}"/>
+            </p:column>
         </p:dataTable>
     </ui:define>
 

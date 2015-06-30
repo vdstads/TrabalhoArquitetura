@@ -29,7 +29,7 @@ public class AlunoController extends ControllerGenerico<Aluno> implements Serial
     private AlunoRepositorio repositorio;
 
     public AlunoController() {
-        super("", "/index.xhtml");
+        super("", "/index.xhtml","");
         entidade = new Aluno();
         filtro = new Aluno();
     }

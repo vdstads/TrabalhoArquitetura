@@ -30,7 +30,7 @@ public class UsuarioController extends ControllerGenerico<Usuario> implements Se
      * Creates a new instance of UsuarioController
      */
     public UsuarioController() {
-        super("index.xhtml", "cadastroUsuario.xhtml");
+        super("index.xhtml", "cadastroUsuario.xhtml","");
         entidade = new Usuario();
         filtro = new Usuario();
     }

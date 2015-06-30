@@ -19,7 +19,8 @@ public class ControllerGenerico<T> {
     /**
      * Creates a new instance of ControllerGenerico
      */
-    public ControllerGenerico(String paginaListagem, String paginaEdicao) {
+    public ControllerGenerico(String paginaListagem, String paginaEdicao, String paginaCadastro) {
+        this.paginaCadastro = paginaCadastro;
         this.paginaListagem = paginaListagem;
         this.paginaEdicao = paginaEdicao;
     }
@@ -29,6 +30,7 @@ public class ControllerGenerico<T> {
 
     protected String paginaListagem;
     protected String paginaEdicao;
+    protected String paginaCadastro;
 
     private Repositorio<T> dao;
 
@@ -112,7 +114,7 @@ public class ControllerGenerico<T> {
     }
 
     public String novo() {
-        return paginaEdicao;
+        return paginaCadastro;
     }
 
     public String abrir(T obj) {

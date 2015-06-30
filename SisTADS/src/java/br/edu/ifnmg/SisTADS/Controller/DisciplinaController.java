@@ -28,7 +28,7 @@ public class DisciplinaController extends ControllerGenerico<Disciplina> impleme
     private DisciplinaRepositorio repositorio;
     
     public DisciplinaController() {
-        super("listaDisciplina.xhtml", "editarDisciplina.xhtml");
+        super("listaDisciplina.xhtml", "editarDisciplina.xhtml","cadastroDisciplina.xhtml");
         entidade = new Disciplina();
         filtro = new Disciplina();
     }

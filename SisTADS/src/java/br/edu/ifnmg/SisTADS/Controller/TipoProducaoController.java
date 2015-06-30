@@ -32,7 +32,7 @@ public class TipoProducaoController extends ControllerGenerico<TipoProducao> imp
     private TipoProducaoRepositorio repositorio;
 
     public TipoProducaoController() {
-        super("listaTipoProducao.xhtml", "editarTipoProducao.xhtml");
+        super("listaTipoProducao.xhtml", "editarTipoProducao.xhtml","cadastroTipoProducao.xhtml");
         entidade = new TipoProducao();
         filtro = new TipoProducao();
     }

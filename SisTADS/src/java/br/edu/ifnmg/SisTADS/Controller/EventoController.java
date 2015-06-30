@@ -29,7 +29,7 @@ public class EventoController extends ControllerGenerico<Evento> implements Seri
     private EventoRepositorio repositorio;
 
     public EventoController() {
-        super("listaEvento.xhtml", "editarEvento.xhtml");
+        super("listaEvento.xhtml", "editarEvento.xhtml","cadastroEvento.xhtml");
         entidade = new Evento();
         filtro = new Evento();
     }

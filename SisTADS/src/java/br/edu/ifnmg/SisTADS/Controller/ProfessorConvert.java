@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.SisTADS.Controller;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Professor;
@@ -20,12 +19,10 @@ import javax.faces.convert.Converter;
  *
  * @author Mauro
  */
-
 @ManagedBean
 @SessionScoped
 public class ProfessorConvert implements Serializable, Converter {
 
-    
     /**
      * Creates a new instance of ProfessorConvert
      */
@@ -34,6 +31,7 @@ public class ProfessorConvert implements Serializable, Converter {
 
     public ProfessorConvert() {
     }
+
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value == null || value.trim().equals("")) {
@@ -53,5 +51,5 @@ public class ProfessorConvert implements Serializable, Converter {
             return professor.getId().toString();
         }
     }
-    
+
 }

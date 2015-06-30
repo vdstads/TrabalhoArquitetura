@@ -29,7 +29,7 @@ public class TipoEventoController extends ControllerGenerico<TipoEvento> impleme
     private TipoEventoRepositorio repositorio;
 
     public TipoEventoController() {
-        super("listaTipoEvento.xhtml", "editarTipoEvento.xhtml");
+        super("listaTipoEvento.xhtml", "editarTipoEvento.xhtml","cadastroTipoEvento.xhtml");
         entidade = new TipoEvento();
         filtro = new TipoEvento();
     }

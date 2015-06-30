@@ -28,7 +28,7 @@ public class ProfessorController extends ControllerGenerico<Professor> implement
      * Creates a new instance of ProfessorController
      */
     public ProfessorController() {
-        super("", "");
+        super("", "","");
         entidade = new Professor();
         filtro = new Professor();
     }

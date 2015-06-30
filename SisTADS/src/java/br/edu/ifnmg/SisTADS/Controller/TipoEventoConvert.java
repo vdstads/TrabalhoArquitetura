@@ -5,14 +5,12 @@
  */
 package br.edu.ifnmg.SisTADS.Controller;
 
-import br.edu.ifnmg.SisTADS.DomainModel.Cidade;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.TipoEventoRepositorio;
 import br.edu.ifnmg.SisTADS.DomainModel.TipoEvento;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -22,7 +20,7 @@ import javax.faces.convert.Converter;
  * @author andre
  */
 @ManagedBean
-@Dependent
+@SessionScoped
 public class TipoEventoConvert implements Serializable, Converter {
 
     /**

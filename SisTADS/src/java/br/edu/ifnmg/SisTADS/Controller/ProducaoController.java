@@ -9,7 +9,6 @@ package br.edu.ifnmg.SisTADS.Controller;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Producao;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.ProducaoRepositorio;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -33,7 +32,7 @@ public class ProducaoController extends ControllerGenerico<Producao> implements 
 
    
     public ProducaoController() {
-        super("listaProducao.xhtml", "editarProducao.xhtml");
+        super("listaProducao.xhtml", "editarProducao.xhtml","cadastroProducao.xhtml");
         entidade = new Producao();
         filtro = new Producao();
     }

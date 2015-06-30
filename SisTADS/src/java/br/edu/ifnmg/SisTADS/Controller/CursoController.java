@@ -28,7 +28,7 @@ public class CursoController extends ControllerGenerico<Curso> implements Serial
     private CursoRepositorio repositorio;
 
     public CursoController() {
-        super("listaCurso.xhtml", "editarCurso.xhtml");
+        super("listaCurso.xhtml", "editarCurso.xhtml","cadastroCurso.xhtml");
         entidade = new Curso();
         filtro = new Curso();
     }

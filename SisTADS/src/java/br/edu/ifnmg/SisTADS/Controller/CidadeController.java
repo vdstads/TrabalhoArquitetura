@@ -29,7 +29,7 @@ public class CidadeController extends ControllerGenerico<Cidade> implements Seri
     private CidadeRepositorio repositorio;
 
     public CidadeController() {
-        super("listaCidade.xhtml", "editarCidade.xhtml");
+        super("listaCidade.xhtml", "editarCidade.xhtml","cadastroCidade.xhtml");
         entidade = new Cidade();
         filtro = new Cidade();
     }

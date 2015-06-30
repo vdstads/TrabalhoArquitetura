@@ -56,6 +56,9 @@
             <p:column headerText="Estado" width="100">
                 #{item.estado}
             </p:column>
+            <p:column headerText="" width="75">
+                <p:commandButton value="Abrir" ajax="false" action="#{cidadeController.abrir(item)}"/>
+            </p:column>
         </p:dataTable>
     </ui:define>
 
