@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <p:panelGrid columns="2">
+            <f:facet name="header">
+                Curso
+            </f:facet>
+            Nome:
+            <p:inputText value="#{cursoController.entidade.nome}"/>
+            <f:facet name="footer">
+                <ui:include src="../componentes/botalSalvar.xhtml">
+                    <ui:param name="controller" value="#{cursoController}"/>
+                </ui:include>
+            </f:facet>
+        </p:panelGrid>
+    </ui:define>
+
+</ui:composition>
