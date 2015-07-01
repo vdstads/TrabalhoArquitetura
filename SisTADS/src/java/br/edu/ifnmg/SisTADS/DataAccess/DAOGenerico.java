@@ -141,5 +141,4 @@ public abstract class DAOGenerico<T> implements Repositorio<T> {
     }
 
     public abstract List<T> Buscar(T filtro);
-
 }

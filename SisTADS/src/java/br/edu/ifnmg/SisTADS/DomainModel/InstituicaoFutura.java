@@ -37,17 +37,8 @@ public class InstituicaoFutura implements Serializable {
     private Date ano;
 
     public InstituicaoFutura() {
-        this.nome = "";
-        this.atividade = "";
         this.ano = new Date();
     }
-
-    public InstituicaoFutura(String nome, String atividade, Date ano) {
-        this.nome = nome;
-        this.atividade = atividade;
-        this.ano = ano;
-    }
-
     
     public Long getId() {
         return id;

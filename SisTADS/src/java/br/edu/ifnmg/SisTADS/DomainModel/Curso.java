@@ -28,7 +28,6 @@ public class Curso implements Serializable {
     private String nome;
 
     public Curso() {
-        nome = "";
     }
 
     public Long getId() {

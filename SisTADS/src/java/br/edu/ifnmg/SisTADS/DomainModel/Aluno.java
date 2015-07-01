@@ -73,16 +73,8 @@ public class Aluno implements Serializable {
     private Usuario idUsuario;
 
     public Aluno() {
-        this.nome = "";
-        this.sexo = "";
         this.dataNascimento = new Date();
-        this.matricula = 0;
-        this.telefone = 0;
-        this.rg = 0;
-        this.quantidadeIrmaos = 0;
         this.renda = new BigDecimal("0.00");
-        this.nomeMae = "";
-        this.nomePai = "";
         this.instituicaoFutura = new InstituicaoFutura();
         this.escolaAnterior = new EscolaAnterior();
         this.idTurma = new Turma();

@@ -34,15 +34,6 @@ public class Usuario implements Serializable {
     private String nivel;
 
     public Usuario() {
-        email = "";
-        senha = "";
-        nivel = "";
-    }
-
-    public Usuario(String email, String senha, String nivel) {
-        this.email = email;
-        this.senha = senha;
-        this.nivel = nivel;
     }
 
     public Long getId() {

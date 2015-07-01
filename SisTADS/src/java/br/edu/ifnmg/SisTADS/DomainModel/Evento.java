@@ -40,7 +40,6 @@ public class Evento implements Serializable {
     private Cidade cidade;
 
     public Evento() {
-        nome = "";
         data = new Date();
         tipoEvento = new TipoEvento();;
         cidade = new Cidade();

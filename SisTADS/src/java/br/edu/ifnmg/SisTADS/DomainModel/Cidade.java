@@ -31,8 +31,6 @@ public class Cidade implements Serializable {
     private String estado;
 
     public Cidade() {
-        this.nome = "";
-        this.estado = "";
     }
 
     public Cidade(String nome, String estado) {

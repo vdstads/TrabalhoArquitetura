@@ -44,7 +44,6 @@ public class Producao implements Serializable {
     private TipoProducao tipoProducao;
 
     public Producao() {
-        nome = "";
         professor = new Professor();
         aluno = new Aluno();
         data = new Date();

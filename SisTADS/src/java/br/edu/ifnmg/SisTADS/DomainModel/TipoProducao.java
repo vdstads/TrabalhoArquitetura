@@ -31,7 +31,6 @@ public class TipoProducao implements Serializable {
     private String nome;
 
     public TipoProducao() {
-        this.nome = "";
     }
 
     public Long getId() {

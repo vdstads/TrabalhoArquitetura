@@ -33,7 +33,6 @@ public class TipoEvento implements Serializable {
     private String nome;
 
     public TipoEvento() {
-        this.nome = "";
     }
 
     public Long getId() {

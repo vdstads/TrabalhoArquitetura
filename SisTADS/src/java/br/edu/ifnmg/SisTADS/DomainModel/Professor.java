@@ -56,6 +56,8 @@ public class Professor implements Serializable {
     private Usuario usuario;
 
     public Professor() {
+        renda = new BigDecimal("0.00");
+        usuario = new Usuario();
     }
 
     public Long getId() {

@@ -30,8 +30,6 @@ public class Disciplina implements Serializable {
     private int cargaHoraria;
 
     public Disciplina() {
-        this.nome = "";
-        this.cargaHoraria = 0;
     }
 
     public Long getId() {

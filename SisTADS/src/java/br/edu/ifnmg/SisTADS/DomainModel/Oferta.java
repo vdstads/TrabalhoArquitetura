@@ -36,7 +36,6 @@ public class Oferta implements Serializable {
     private Turma turma;
 
     public Oferta() {
-        semestre = "";
         professor = new Professor();
         disciplina = new Disciplina();
         turma = new Turma();
