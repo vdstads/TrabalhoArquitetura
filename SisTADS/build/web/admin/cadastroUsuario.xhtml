@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                Usuário
+            </f:facet>
+            <p:panelGrid columns="2">
+                Email:
+                <p:inputText value="#{usuarioController.entidade.email}"/>
+                Senha:
+                <p:password value="#{usuarioController.entidade.senha}"/>
+                Nível:
+                <p:selectOneRadio value="#{usuarioController.entidade.nivel}">
+                    <f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
+                    <f:selectItem itemLabel="Professor" itemValue="Professor"/>
+                    <f:selectItem itemLabel="Aluno" itemValue="Aluno"/>
+                </p:selectOneRadio>
+            </p:panelGrid>
+            <ui:include src="../componentes/botoesCadastro.xhtml">
+                <ui:param name="controller" value="#{usuarioController}"/>
+            </ui:include>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

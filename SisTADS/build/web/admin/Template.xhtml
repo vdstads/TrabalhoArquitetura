@@ -15,26 +15,28 @@
 
     <h:body>
 
+        <div style="float: top; background-color: black; width: 100%; height: 200px;">
+        </div>
+
         <h:form>
             <p:toolbar>
                 <f:facet name="left">
-                    <p:commandButton value="Curso" ajax="false" action="listaCurso.xhtml"/>
-                    <p:commandButton value="Disciplina" ajax="false" action="listaDisciplina.xhtml"/>
-                    <p:menuButton value="Evento">
-                        <p:menuitem value="Cidade" ajax="false" action="listaCidade.xhtml"/>
-                        <p:menuitem value="Tipo de Evento" ajax="false" action="listaTipoEvento.xhtml"/>
-                        <p:menuitem value="Evento" ajax="false" action="listaEvento.xhtml"/>
+                    <p:commandButton value="Usuário" ajax="false" action="listaUsuario.xhtml"/>
+                    <p:commandButton value="Curso"/>
+                    <p:commandButton value="Disciplina"/>
+                    <p:menuButton value="Eventos">
+                        <p:menuitem value="Cidade"/>
+                        <p:menuitem value="Tipo de Evento"/>
+                        <p:menuitem value="Evento"/>
                     </p:menuButton>
                 </f:facet>
                 <f:facet name="right">
-                    <p:commandButton value="Logout" ajax="false" action="#{usuarioController.logout()}"/>
+                    <p:commandButton value="#{usuarioController.nomeBotao}" ajax="false" action="#{usuarioController.logout()}"/>
                 </f:facet>
             </p:toolbar>
+            <p:growl id="global"/>
             <div id="content" class="center_content">
-                <p:panel>
-                    <p:growl id="global"/>
-                    <ui:insert name="content">Content</ui:insert>
-                </p:panel>
+                <ui:insert name="content">Content</ui:insert>
             </div>
         </h:form>
 

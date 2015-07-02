@@ -9,23 +9,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>SisTADS</title>
+        <title>Facelets Template</title>
     </h:head>
 
     <h:body>
 
+        <div style="float: top; background-color: black; width: 100%; height: 200px;">
+        </div>
+
         <h:form>
             <div id="content" class="center_content">
                 <p:growl id="global"/>
-                <p:panel>
-                    <ui:insert name="content">Content</ui:insert>
-                </p:panel>
+                <ui:insert name="content">Content</ui:insert>
             </div>
         </h:form>
-
-        <div id="bottom">
-            &copy; IFNMG 2015
-        </div>
 
     </h:body>
 

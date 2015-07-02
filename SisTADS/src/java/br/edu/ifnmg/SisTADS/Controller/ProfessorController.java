@@ -8,6 +8,7 @@ package br.edu.ifnmg.SisTADS.Controller;
 import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.ProfessorRepositorio;
 import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
+import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -27,35 +28,33 @@ public class ProfessorController extends ControllerGenerico<Professor> implement
     /**
      * Creates a new instance of ProfessorController
      */
+    @EJB
+    private ProfessorRepositorio repositorio;
+
     public ProfessorController() {
-        super("", "","");
+        super("", "", "");
         entidade = new Professor();
         filtro = new Professor();
     }
 
-    @EJB
-    private ProfessorRepositorio repositorio;
-
     @Override
-    public String salvar() {
-        HttpSession session;
-        FacesContext context = FacesContext.getCurrentInstance();
-        session = (HttpSession) context.getExternalContext().getSession(false);
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-        entidade.setUsuario(usuario);
-        if (repositorio.Salvar(entidade)) {
-            MensagemSucesso("Sucesso!", "Registro salvo com sucesso!");
-            return "index.xhtml";
-        } else {
-            MensagemErro("Erro!", "Consulte o administrador do sistema!");
-            return "";
+    public void salvar() {
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+            Usuario usuario = (Usuario) session.getAttribute("usuario");
+            entidade.setUsuario(usuario);
+            if (repositorio.Salvar(entidade)) {
+                MensagemSucesso("Sucesso!", "Registro salvo com sucesso!");
+                Professor professor = repositorio.AbrirPorNome(entidade.getNome());
+                session.setAttribute("professor", professor);
+                FacesContext.getCurrentInstance().getExternalContext().redirect("professor");
+            } else {
+                MensagemErro("Erro!", "Consulte o administrador do sistema!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-    }
-
-    @Override
-    public String voltar() {
-        return "index.xhtml";
     }
 
     @PostConstruct

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <p:panel>
+            <p:panelGrid columns="2">
+                Email:
+                <p:inputText style="width: 100%" value="#{usuarioController.filtro.email}"/>
+                Nível:
+                <p:selectOneRadio value="#{usuarioController.filtro.nivel}">
+                    <f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
+                    <f:selectItem itemLabel="Professor" itemValue="Professor"/>
+                    <f:selectItem itemLabel="Aluno" itemValue="Aluno"/>
+                </p:selectOneRadio>
+                <ui:include src="../componentes/botoesListagem.xhtml">
+                    <ui:param name="controller" value="#{usuarioController}"/>
+                </ui:include>
+            </p:panelGrid>
+            <p:dataTable value="#{usuarioController.listagem}" var="item">
+                <p:column headerText="ID" width="75" style="text-align: center">
+                    #{item.getId()}
+                </p:column>
+                <p:column headerText="Email">
+                    #{item.getEmail()}
+                </p:column>
+                <p:column headerText="Nível">
+                    #{item.getNivel()}
+                </p:column>
+                <p:column headerText="Ação" width="100" style="text-align: center">
+                    <p:commandButton value="Editar" ajax="false" action="#{usuarioController.abrir(item)}"/>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

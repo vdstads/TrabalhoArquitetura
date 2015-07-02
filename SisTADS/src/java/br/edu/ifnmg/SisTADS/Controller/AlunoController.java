@@ -6,13 +6,17 @@
 package br.edu.ifnmg.SisTADS.Controller;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
+import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.AlunoRepositorio;
+import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,9 +33,29 @@ public class AlunoController extends ControllerGenerico<Aluno> implements Serial
     private AlunoRepositorio repositorio;
 
     public AlunoController() {
-        super("", "/index.xhtml","");
+        super("", "", "");
         entidade = new Aluno();
         filtro = new Aluno();
+    }
+
+    @Override
+    public void salvar() {
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+            Usuario usuario = (Usuario) session.getAttribute("usuario");
+            entidade.setIdUsuario(usuario);
+            if (repositorio.Salvar(entidade)) {
+                MensagemSucesso("Sucesso!", "Registro salvo com sucesso!");
+                Aluno aluno = repositorio.AbrirPorNome(entidade.getNome());
+                session.setAttribute("aluno", aluno);
+                FacesContext.getCurrentInstance().getExternalContext().redirect("aluno");
+            } else {
+                MensagemErro("Erro!", "Consulte o administrador do sistema!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @PostConstruct

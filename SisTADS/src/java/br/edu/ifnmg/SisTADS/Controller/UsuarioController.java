@@ -1,19 +1,19 @@
+package br.edu.ifnmg.SisTADS.Controller;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.SisTADS.Controller;
-
 import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
 import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.UsuarioRepositorio;
 import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Enumeration;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author andre
  */
+//@Named(value = "usuarioController")
 @ManagedBean
 @SessionScoped
 public class UsuarioController extends ControllerGenerico<Usuario> implements Serializable {
@@ -29,23 +30,32 @@ public class UsuarioController extends ControllerGenerico<Usuario> implements Se
     /**
      * Creates a new instance of UsuarioController
      */
+    @EJB
+    private UsuarioRepositorio repositorio;
+
     public UsuarioController() {
-        super("index.xhtml", "cadastroUsuario.xhtml","");
+        super("listaUsuario.xhtml", "editarUsuario.xhtml", "cadastroUsuario.xhtml");
         entidade = new Usuario();
         filtro = new Usuario();
     }
 
-    @EJB
-    private UsuarioRepositorio repositorio;
+    @Override
+    public String novo() {
+        entidade = new Usuario();
+        return super.novo(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String limparfiltros() {
+        filtro = new Usuario();
+        return super.limparfiltros(); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public String logout() {
-        HttpSession session;
         FacesContext context = FacesContext.getCurrentInstance();
-        session = (HttpSession) context.getExternalContext().getSession(false);
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
         session.setAttribute("usuario", null);
-
         Enumeration<String> vals = session.getAttributeNames();
-
         while (vals.hasMoreElements()) {
             session.removeAttribute(vals.nextElement());
         }
@@ -54,39 +64,41 @@ public class UsuarioController extends ControllerGenerico<Usuario> implements Se
 
     public String login() {
         Usuario usuario = repositorio.login(entidade);
-        HttpSession session;
-        FacesContext context = FacesContext.getCurrentInstance();
-        session = (HttpSession) context.getExternalContext().getSession(false);
-        session.setAttribute("usuario", usuario);
-        if (usuario.getNivel().equals("Administrador")) {
-            try {
+        if (usuario == null) {
+            MensagemErro("Acesso", "Login ou Senha Inválidos!");
+        } else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+            session.setAttribute("usuario", usuario);
+            if (usuario.getNivel().equals("Administrador")) {
                 return "admin/index.xhtml";
-            } catch (Exception e) {
-                e.printStackTrace();
-                return "index.xhtml";
-            }
-        } else if (usuario.getNivel().equals("Professor")) {
-            Professor professor = repositorio.verificarProfessor(usuario);
-            if (professor == null) {
-                return "cadastroProfessor.xhtml";
-            } else {
-                MensagemErro("", "tem");
-                return "professor/index.xhtml";
-            }
-        } else if (usuario.getNivel().equals("Aluno")) {
-            Aluno aluno = repositorio.verificarAluno(usuario);
-            if (aluno == null) {
-                return "/cadastroAluno.xhtml";
-            } else {
-                return "aluno/index.xhtml";
+            } else if (usuario.getNivel().equals("Professor")) {
+                Professor professor = repositorio.verificarProfessor(usuario);
+                if (professor == null) {
+                    return "CadastroProfessor.xhtml";
+                } else {
+                    session.setAttribute("professor", professor);
+                    return "/professor/index.xhtml";
+                }
+            } else if (usuario.getNivel().equals("Aluno")) {
+                Aluno aluno = repositorio.verificarAluno(usuario);
+                session.setAttribute("aluno", aluno);
+                return "/aluno/index.xhtml";
             }
         }
-        return "index.xhtml";
+        return "";
+    }
+
+    public String getNomeBotao() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+        Long id = (Long) session.getAttribute("usuario");
+        String nome = repositorio.Abrir(id).getEmail();
+        return nome + " - Logout";
     }
 
     @PostConstruct
     public void configurar() {
         setDao(repositorio);
     }
-
 }

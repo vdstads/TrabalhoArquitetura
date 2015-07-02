@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                Cadastro de Aluno
+            </f:facet>
+            <p:panelGrid columns="2">
+                Nome:
+                <p:inputText value="#{alunoController.entidade.nome}"/>
+                Data de Nascimento:
+                <p:inputMask mask="99/99/9999" value="#{alunoController.entidade.dataNascimento}"/>
+                Rg:
+                <p:inputText value="#{alunoController.entidade.rg}" alt="Somente Números"/>
+                Sexo:
+                <p:selectOneRadio value="#{alunoController.entidade.sexo}">
+                    <f:selectItem itemLabel="F" itemValue="F"/>
+                    <f:selectItem itemLabel="M" itemValue="M"/>
+                </p:selectOneRadio>
+                Telefone ou Celular:
+                <p:inputText value="#{alunoController.entidade.telefone}" alt="Somente Números"/>
+                Mãe:
+                <p:inputText value="#{alunoController.entidade.nomeMae}"/>
+                Pai:
+                <p:inputText value="#{alunoController.entidade.nomePai}"/>
+                Renda:
+                <p:spinner value="#{alunoController.entidade.renda}"/>
+                Quantidade de Irmãos:
+                <p:spinner value="#{alunoController.entidade.quantidadeIrmaos}"/>
+                Matrícula:
+                <p:spinner value="#{alunoController.entidade.matricula}"/>
+                Curso:
+                <p:selectOneMenu value="#{alunoController.entidade.idCurso}">
+                </p:selectOneMenu>
+                Turma:
+                <p:selectOneMenu value="#{alunoController.entidade.idTurma}">
+                </p:selectOneMenu>
+                Escola Anterior:
+                <p:selectOneMenu value="#{alunoController.entidade.escolaAnterior}"></p:selectOneMenu>
+                Instituição Futura:
+                <p:selectOneMenu value="#{alunoController.entidade.instituicaoFutura}">
+                </p:selectOneMenu>
+                <f:facet name="footer">
+                    <p:commandButton value="Salvar" style="float: left" ajax="false" action="#{alunoController.salvar()}"/>
+                    <p:commandButton value="Cancelar" style="float: right" ajax="false" action="#{usuarioController.logout()}"/>
+                </f:facet>
+            </p:panelGrid>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

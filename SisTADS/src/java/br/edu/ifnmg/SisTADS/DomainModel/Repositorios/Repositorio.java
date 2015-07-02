@@ -18,6 +18,6 @@ public interface Repositorio<T> {
     public T Abrir(Long id);
 
     public boolean Apagar(T obj);
-
+    
     public List<T> Buscar(T filtro);
 }

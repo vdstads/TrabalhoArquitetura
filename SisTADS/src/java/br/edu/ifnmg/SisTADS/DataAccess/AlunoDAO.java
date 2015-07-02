@@ -6,9 +6,11 @@
 package br.edu.ifnmg.SisTADS.DataAccess;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
+import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.AlunoRepositorio;
 import java.util.List;
 import javax.ejb.Singleton;
+import javax.persistence.Query;
 
 /**
  *
@@ -33,5 +35,18 @@ public class AlunoDAO extends DAOGenerico<Aluno> implements AlunoRepositorio {
                 .IgualA("rg", filtro.getRg())
                 .OrderBy("nome", "ASC")
                 .Buscar();
+    }
+
+    @Override
+    public Aluno AbrirPorNome(String nome) {
+        try {
+            Query consulta = manager.createQuery("select o from Aluno o "
+                    + "where o.nome = :nome");
+            consulta.setParameter("nome", nome);
+            return (Aluno) consulta.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

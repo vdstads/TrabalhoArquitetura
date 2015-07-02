@@ -16,15 +16,6 @@ import javax.faces.context.FacesContext;
  */
 public class ControllerGenerico<T> {
 
-    /**
-     * Creates a new instance of ControllerGenerico
-     */
-    public ControllerGenerico(String paginaListagem, String paginaEdicao, String paginaCadastro) {
-        this.paginaCadastro = paginaCadastro;
-        this.paginaListagem = paginaListagem;
-        this.paginaEdicao = paginaEdicao;
-    }
-
     protected T entidade;
     protected T filtro;
 
@@ -34,28 +25,10 @@ public class ControllerGenerico<T> {
 
     private Repositorio<T> dao;
 
-    protected Repositorio<T> getDao() {
-        return dao;
-    }
-
-    protected void setDao(Repositorio<T> dao) {
-        this.dao = dao;
-    }
-
-    public T getEntidade() {
-        return entidade;
-    }
-
-    public void setEntidade(T entidade) {
-        this.entidade = entidade;
-    }
-
-    public T getFiltro() {
-        return filtro;
-    }
-
-    public void setFiltro(T filtro) {
-        this.filtro = filtro;
+    public ControllerGenerico(String paginaListagem, String paginaEdicao, String paginaCadastro) {
+        this.paginaListagem = paginaListagem;
+        this.paginaEdicao = paginaEdicao;
+        this.paginaCadastro = paginaCadastro;
     }
 
     protected void MensagemSucesso(String titulo, String msg) {
@@ -74,14 +47,13 @@ public class ControllerGenerico<T> {
         context.getExternalContext().getFlash().setKeepMessages(true);
     }
 
-    public String salvar() {
+    public void salvar() {
         if (dao.Salvar(entidade)) {
             MensagemSucesso("Sucesso!", "Registro salvo com sucesso!");
-            return paginaListagem;
         } else {
             MensagemErro("Erro!", "Consulte o administrador do sistema!");
-            return "";
         }
+
     }
 
     public String apagar() {
@@ -95,10 +67,28 @@ public class ControllerGenerico<T> {
 
     }
 
-    public void editar() {
-        dao.Apagar(entidade);
-        dao.Salvar(entidade);
-        MensagemSucesso("Sucesso!", "Registro Editado com sucesso!");
+    public T getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(T entidade) {
+        this.entidade = entidade;
+    }
+
+    public T getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(T filtro) {
+        this.filtro = filtro;
+    }
+
+    public Repositorio<T> getDao() {
+        return dao;
+    }
+
+    public void setDao(Repositorio<T> dao) {
+        this.dao = dao;
     }
 
     public String voltar() {
@@ -125,4 +115,6 @@ public class ControllerGenerico<T> {
     public List<T> getListagem() {
         return dao.Buscar(filtro);
     }
+
+
 }

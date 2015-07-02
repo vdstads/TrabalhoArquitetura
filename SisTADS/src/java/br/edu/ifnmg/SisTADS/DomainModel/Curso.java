@@ -6,6 +6,7 @@
 package br.edu.ifnmg.SisTADS.DomainModel;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,8 +48,14 @@ public class Curso implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return nome;
+    }
+
+    @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -61,12 +68,12 @@ public class Curso implements Serializable {
             return false;
         }
         final Curso other = (Curso) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.Curso[ id=" + id + " ]";
-    }
-
+    
+    
 }

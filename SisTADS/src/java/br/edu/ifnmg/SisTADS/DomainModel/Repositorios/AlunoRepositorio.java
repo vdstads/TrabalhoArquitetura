@@ -7,6 +7,7 @@
 package br.edu.ifnmg.SisTADS.DomainModel.Repositorios;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
+import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import javax.ejb.Local;
 
 /**
@@ -15,5 +16,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface AlunoRepositorio extends Repositorio<Aluno>{
+    public Aluno AbrirPorNome(String nome);
     
 }

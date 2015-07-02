@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                Cadastro de Professor
+            </f:facet>
+            <p:panelGrid columns="2">
+                Nome:
+                <p:inputText value="#{professorController.entidade.nome}"/>
+                Cpf:
+                <p:inputMask mask="999.999.999-99" value="#{professorController.entidade.cpf}"/>
+                Sexo:
+                <p:selectOneRadio value="#{professorController.entidade.sexo}">
+                    <f:selectItem itemLabel="F" itemValue="F"/>
+                    <f:selectItem itemLabel="M" itemValue="M"/>
+                </p:selectOneRadio>
+                Mãe:
+                <p:inputText value="#{professorController.entidade.nomeMae}"/>
+                Pai:
+                <p:inputText value="#{professorController.entidade.nomePai}"/>
+                Estado Civil:
+                <p:selectOneRadio value="#{professorController.entidade.estadoCivil}">
+                    <f:selectItem itemLabel="Solteiro" itemValue="Solteiro"/>
+                    <f:selectItem itemLabel="Casado" itemValue="Casado"/>
+                    <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/>
+                    <f:selectItem itemLabel="Viúvo" itemValue="Viúvo"/>
+                </p:selectOneRadio>
+                Renda:
+                <p:spinner value="#{professorController.entidade.renda}"/>
+                CurriculoLattes:
+                <p:inputText value="#{professorController.entidade.curriculoLattes}"/>
+                <f:facet name="footer">
+                    <p:commandButton value="Salvar" style="float: left" ajax="false" action="#{professorController.salvar()}"/>
+                    <p:commandButton value="Cancelar" style="float: right" ajax="false" action="#{usuarioController.logout()}"/>
+                </f:facet>
+            </p:panelGrid>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

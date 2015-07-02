@@ -73,7 +73,6 @@ public class Aluno implements Serializable {
     private Usuario idUsuario;
 
     public Aluno() {
-        this.dataNascimento = new Date();
         this.renda = new BigDecimal("0.00");
         this.instituicaoFutura = new InstituicaoFutura();
         this.escolaAnterior = new EscolaAnterior();

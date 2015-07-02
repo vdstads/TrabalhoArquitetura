@@ -27,6 +27,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements UsuarioRepositor
     @Override
     public List<Usuario> Buscar(Usuario filtro) {
         return Like("email", filtro.getEmail())
+                .Like("nivel", filtro.getNivel())
                 .IgualA("id", filtro.getId())
                 .OrderBy("email", "ASC")
                 .Buscar();
@@ -34,11 +35,16 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements UsuarioRepositor
 
     @Override
     public Usuario login(Usuario usuario) {
-        Query consulta = manager.createQuery("select o from Usuario o "
-                + "where o.email = :email and o.senha = :senha");
-        consulta.setParameter("email", usuario.getEmail());
-        consulta.setParameter("senha", usuario.getSenha());
-        return (Usuario) consulta.getSingleResult();
+        try {
+            Query consulta = manager.createQuery("select o from Usuario o "
+                    + "where o.email = :email and o.senha = :senha");
+            consulta.setParameter("email", usuario.getEmail());
+            consulta.setParameter("senha", usuario.getSenha());
+            return (Usuario) consulta.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

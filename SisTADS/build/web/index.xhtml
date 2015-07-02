@@ -2,21 +2,20 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./Template.xhtml"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="content">
-        <f:facet name="header">
-            Realize o Login
-        </f:facet>
-        <p:panelGrid columns="2">
+        <p:panelGrid columns="2" style="position: relative; top: 40%; left: 40%;">
+            <f:facet name="header">
+                Área de Acesso
+            </f:facet>
             Email:
             <p:inputText value="#{usuarioController.entidade.email}"/>
             Senha:
             <p:password value="#{usuarioController.entidade.senha}"/>
             <f:facet name="footer">
-                <p:commandButton value="Entrar" style="float: left" ajax="false" action="#{usuarioController.login()}"/>
-                <p:commandButton value="Cadastro" style="float: right" ajax="false" action="#{usuarioController.novo()}"/>
+                <p:commandButton value="Entrar" style="float: left; width: 100%" ajax="false" action="#{usuarioController.login()}"/>
             </f:facet>
         </p:panelGrid>
     </ui:define>
