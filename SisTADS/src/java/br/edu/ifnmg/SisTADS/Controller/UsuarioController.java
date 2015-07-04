@@ -92,9 +92,17 @@ public class UsuarioController extends ControllerGenerico<Usuario> implements Se
     public String getNomeBotao() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
-        Long id = (Long) session.getAttribute("usuario");
-        String nome = repositorio.Abrir(id).getEmail();
-        return nome + " - Logout";
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        if (usuario.getNivel().equals("Administrador")) {
+            return "Administrador - Logout";
+        } else if (usuario.getNivel().equals("Professor")) {
+            Professor professor = repositorio.verificarProfessor(usuario);
+            return professor.getNome() + " - Logout";
+        } else if (usuario.getNivel().equals("Aluno")) {
+            Aluno aluno = repositorio.verificarAluno(usuario);
+            return aluno.getNome() + " - Logout";
+        }
+        return null;
     }
 
     @PostConstruct

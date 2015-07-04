@@ -8,7 +8,7 @@
     <ui:define name="content">
         <p:panel>
             <f:facet name="header">
-                Usuário
+                Cadastro de Usuário
             </f:facet>
             <p:panelGrid columns="2">
                 Email:
@@ -19,7 +19,6 @@
                 <p:selectOneRadio value="#{usuarioController.entidade.nivel}">
                     <f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
                     <f:selectItem itemLabel="Professor" itemValue="Professor"/>
-                    <f:selectItem itemLabel="Aluno" itemValue="Aluno"/>
                 </p:selectOneRadio>
             </p:panelGrid>
             <ui:include src="../componentes/botoesCadastro.xhtml">

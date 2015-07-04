@@ -6,24 +6,28 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        <p:panel>
+        <p:panel>   
             <f:facet name="header">
                 Cadastro de Aluno
             </f:facet>
             <p:panelGrid columns="2">
+                Email:
+                <p:inputText value="#{alunoController.email}"/>
+                Senha:
+                <p:password value="#{alunoController.senha}"/>
                 Nome:
                 <p:inputText value="#{alunoController.entidade.nome}"/>
                 Data de Nascimento:
-                <p:inputMask mask="99/99/9999" value="#{alunoController.entidade.dataNascimento}"/>
+                <p:calendar value="#{alunoController.entidade.dataNascimento}" locale="pt_BR" pattern="dd/mm/YYYY"/>
                 Rg:
-                <p:inputText value="#{alunoController.entidade.rg}" alt="Somente Números"/>
+                <p:inputText value="#{alunoController.entidade.rg}"/>
                 Sexo:
                 <p:selectOneRadio value="#{alunoController.entidade.sexo}">
                     <f:selectItem itemLabel="F" itemValue="F"/>
                     <f:selectItem itemLabel="M" itemValue="M"/>
                 </p:selectOneRadio>
                 Telefone ou Celular:
-                <p:inputText value="#{alunoController.entidade.telefone}" alt="Somente Números"/>
+                <p:inputMask value="#{alunoController.entidade.telefone}" mask="(99)9999-9999"/>
                 Mãe:
                 <p:inputText value="#{alunoController.entidade.nomeMae}"/>
                 Pai:
@@ -41,14 +45,14 @@
                 <p:selectOneMenu value="#{alunoController.entidade.idTurma}">
                 </p:selectOneMenu>
                 Escola Anterior:
-                <p:selectOneMenu value="#{alunoController.entidade.escolaAnterior}"></p:selectOneMenu>
-                Instituição Futura:
-                <p:selectOneMenu value="#{alunoController.entidade.instituicaoFutura}">
-                </p:selectOneMenu>
-                <f:facet name="footer">
-                    <p:commandButton value="Salvar" style="float: left" ajax="false" action="#{alunoController.salvar()}"/>
-                    <p:commandButton value="Cancelar" style="float: right" ajax="false" action="#{usuarioController.logout()}"/>
-                </f:facet>
+                <p:inputText value="#{alunoController.entidade.escolaAnterior}"/>
+                Cidade(Estado) Anterior:
+                <p:inputText value="#{alunoController.entidade.localidadeAnteiror}"/>
+                Ano de Conclusão:
+                <p:spinner value="#{alunoController.entidade.anoDeConclusao}"/>
+                <ui:include src="../componentes/botoesCadastro.xhtml">
+                    <ui:param name="controller" value="#{alunoController}"/>
+                </ui:include>
             </p:panelGrid>
         </p:panel>
     </ui:define>

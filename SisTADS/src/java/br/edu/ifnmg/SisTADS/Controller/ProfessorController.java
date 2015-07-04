@@ -38,7 +38,7 @@ public class ProfessorController extends ControllerGenerico<Professor> implement
     }
 
     @Override
-    public void salvar() {
+    public String salvar() {
         try {
             FacesContext context = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
@@ -55,6 +55,7 @@ public class ProfessorController extends ControllerGenerico<Professor> implement
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     @PostConstruct

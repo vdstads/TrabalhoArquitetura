@@ -8,7 +8,9 @@ package br.edu.ifnmg.SisTADS.DomainModel;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,7 +42,6 @@ public class Evento implements Serializable {
     private Cidade cidade;
 
     public Evento() {
-        data = new Date();
         tipoEvento = new TipoEvento();;
         cidade = new Cidade();
     }
@@ -61,24 +62,12 @@ public class Evento implements Serializable {
         this.nome = nome;
     }
 
-    public String getData() {
-        SimpleDateFormat dateFormat;
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String dataString;
-        try {
-            Date newData = dateFormat.parse(this.data.toString());
-            dataString = dateFormat.format(data);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            dataString = null;
-        }
-        return dataString;
+    public Date getData() {
+        return data;
     }
 
-    public void setData(String data) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        Date dataUtil = new Date(format.parse(data).getTime());
-        this.data = dataUtil;
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public TipoEvento getTipoEvento() {
@@ -99,19 +88,25 @@ public class Evento implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 13 * hash + Objects.hashCode(this.tipoEvento);
+        hash = 13 * hash + Objects.hashCode(this.cidade);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Evento)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Evento other = (Evento) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Evento other = (Evento) obj;
+        if (!Objects.equals(this.tipoEvento, other.tipoEvento)) {
+            return false;
+        }
+        if (!Objects.equals(this.cidade, other.cidade)) {
             return false;
         }
         return true;

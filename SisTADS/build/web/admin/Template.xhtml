@@ -21,13 +21,19 @@
         <h:form>
             <p:toolbar>
                 <f:facet name="left">
-                    <p:commandButton value="Usuário" ajax="false" action="listaUsuario.xhtml"/>
-                    <p:commandButton value="Curso"/>
-                    <p:commandButton value="Disciplina"/>
+                    <p:menuButton value="Usuário">
+                        <p:menuitem value="Usuário" ajax="false" action="listaUsuario.xhtml"/>
+                        <p:menuitem value="Aluno" ajax="false" action="listaAluno.xhtml"/>
+                    </p:menuButton>
+                    <p:commandButton value="Curso" ajax="false" action="listaCurso.xhtml"/>
+                    <p:commandButton value="Disciplina" ajax="false" action="listaDisciplina.xhtml"/>
                     <p:menuButton value="Eventos">
-                        <p:menuitem value="Cidade"/>
-                        <p:menuitem value="Tipo de Evento"/>
-                        <p:menuitem value="Evento"/>
+                        <p:menuitem value="Cidade" ajax="false" action="listaCidade.xhtml}"/>
+                        <p:menuitem value="Tipo de Evento" ajax="false" action="listaTipoEvento.xhtml"/>
+                        <p:menuitem value="Evento" ajax="false" action="listaEvento.xhtml"/>
+                    </p:menuButton>
+                    <p:menuButton value="Dados Extras">
+                        <p:menuitem value="Instituições Futuras"/>
                     </p:menuButton>
                 </f:facet>
                 <f:facet name="right">

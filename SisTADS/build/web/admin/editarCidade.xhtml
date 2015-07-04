@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                Alteração de Cidade
+            </f:facet>
+            <p:panelGrid columns="2">
+                Nome:
+                <p:inputText value="#{cidadeController.entidade.nome}"/>
+                Estado:
+                <p:selectOneMenu value="#{cidadeController.entidade.estado}">
+                    <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Acre" itemValue="AC"/>
+                    <f:selectItem itemLabel="Alagoas" itemValue="AL"/>
+                    <f:selectItem itemLabel="Amapá" itemValue="AP"/>
+                    <f:selectItem itemLabel="Amazonas" itemValue="AM"/>
+                    <f:selectItem itemLabel="Bahia" itemValue="BA"/>
+                    <f:selectItem itemLabel="Ceará" itemValue="CE"/>
+                    <f:selectItem itemLabel="Distrito Federal" itemValue="DF"/>
+                    <f:selectItem itemLabel="Espírito Santo" itemValue="ES"/>
+                    <f:selectItem itemLabel="Goiás" itemValue="GO"/>
+                    <f:selectItem itemLabel="Maranhão" itemValue="MA"/>
+                    <f:selectItem itemLabel="Mato Grosso" itemValue="MT"/>
+                    <f:selectItem itemLabel="Mato Grosso do Sul" itemValue="MS"/>
+                    <f:selectItem itemLabel="Minas Gerais" itemValue="MG"/>
+                    <f:selectItem itemLabel="Pará" itemValue="PA"/>
+                    <f:selectItem itemLabel="Paraíba" itemValue="PB"/>
+                    <f:selectItem itemLabel="Paraná" itemValue="PR"/>
+                    <f:selectItem itemLabel="Pernambuco" itemValue="PE"/>
+                    <f:selectItem itemLabel="Piauí" itemValue="PI"/>
+                    <f:selectItem itemLabel="Rio de Janeiro" itemValue="RJ"/>
+                    <f:selectItem itemLabel="Rio Grande do Norte" itemValue="RN"/>
+                    <f:selectItem itemLabel="Rio Grande do Sul" itemValue="RS"/>
+                    <f:selectItem itemLabel="Rondônia" itemValue="RO"/>
+                    <f:selectItem itemLabel="Roraima" itemValue="RR"/>
+                    <f:selectItem itemLabel="Santa Catarina" itemValue="SC"/>
+                    <f:selectItem itemLabel="São Paulo" itemValue="SP"/>
+                    <f:selectItem itemLabel="Sergipe" itemValue="SE"/>
+                    <f:selectItem itemLabel="Tocantins" itemValue="TO"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <ui:include src="../componentes/botoesEditar.xhtml">
+                <ui:param name="controller" value="#{cidadeController}"/>
+            </ui:include>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

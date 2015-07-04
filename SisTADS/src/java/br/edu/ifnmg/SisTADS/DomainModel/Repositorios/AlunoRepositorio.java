@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.SisTADS.DomainModel.Repositorios;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
@@ -15,7 +14,10 @@ import javax.ejb.Local;
  * @author Mauro
  */
 @Local
-public interface AlunoRepositorio extends Repositorio<Aluno>{
+public interface AlunoRepositorio extends Repositorio<Aluno> {
+
     public Aluno AbrirPorNome(String nome);
-    
+
+    public boolean SalvarUsuario(String email, String senha);
+
 }

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                Alteração de Tipo de Evento
+            </f:facet>
+            <p:panelGrid columns="2">
+                Nome:
+                <p:inputText value="#{tipoEventoController.entidade.nome}"/>
+            </p:panelGrid>
+            <ui:include src="../componentes/botoesEditar.xhtml">
+                <ui:param name="controller" value="#{tipoEventoController}"/>
+            </ui:include>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

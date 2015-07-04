@@ -6,10 +6,11 @@
 package br.edu.ifnmg.SisTADS.DataAccess;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
-import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.AlunoRepositorio;
+import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
 import java.util.List;
 import javax.ejb.Singleton;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 /**
@@ -47,6 +48,22 @@ public class AlunoDAO extends DAOGenerico<Aluno> implements AlunoRepositorio {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public boolean SalvarUsuario(String email, String senha) {
+        try {
+            Usuario usuario = new Usuario();
+            usuario.setEmail(email);
+            usuario.setSenha(usuario.criptografica(senha));
+            usuario.setNivel("Aluno");
+            manager.persist(usuario);
+            manager.flush();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

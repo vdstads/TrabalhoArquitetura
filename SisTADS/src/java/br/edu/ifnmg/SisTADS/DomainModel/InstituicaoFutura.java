@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -36,10 +37,13 @@ public class InstituicaoFutura implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date ano;
 
+    @OneToOne
+    private Aluno aluno;
+
     public InstituicaoFutura() {
-        this.ano = new Date();
+        this.aluno = new Aluno();
     }
-    
+
     public Long getId() {
         return id;
     }

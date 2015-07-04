@@ -47,11 +47,13 @@ public class ControllerGenerico<T> {
         context.getExternalContext().getFlash().setKeepMessages(true);
     }
 
-    public void salvar() {
+    public String salvar() {
         if (dao.Salvar(entidade)) {
             MensagemSucesso("Sucesso!", "Registro salvo com sucesso!");
+            return paginaListagem;
         } else {
             MensagemErro("Erro!", "Consulte o administrador do sistema!");
+            return "";
         }
 
     }

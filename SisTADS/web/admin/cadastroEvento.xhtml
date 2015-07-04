@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                Cadastro de Evento
+            </f:facet>
+            <p:panelGrid columns="2">
+                Nome:
+                <p:inputText value="#{eventoController.entidade.nome}"/>    
+                Data:
+                <p:calendar value="#{eventoController.entidade.data}" locale="pt_BR" pattern="dd/mm/yyyy"/>
+                Cidade:
+                <p:selectOneMenu value="#{eventoController.entidade.cidade}" converter="${cidadeConvert}">
+                    <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+                    <f:selectItems value="#{cidadeController.listagem}"/>
+                </p:selectOneMenu>  
+                Tipo de Evento:
+                <p:selectOneMenu value="#{eventoController.entidade.tipoEvento}" converter="${tipoEventoConvert}">
+                    <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+                    <f:selectItems value="#{tipoEventoController.listagem}"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <ui:include src="../componentes/botoesCadastro.xhtml">
+                <ui:param name="controller" value="#{eventoController}"/>
+            </ui:include>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

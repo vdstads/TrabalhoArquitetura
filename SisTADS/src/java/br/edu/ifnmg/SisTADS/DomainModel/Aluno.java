@@ -42,9 +42,11 @@ public class Aluno implements Serializable {
 
     private int matricula;
 
-    private int telefone;
+    @Column(length = 25, nullable = false)
+    private String telefone;
 
-    private int rg;
+    @Column(length = 25, nullable = false)
+    private String rg;
 
     private int quantidadeIrmaos;
 
@@ -57,11 +59,12 @@ public class Aluno implements Serializable {
     @Column(length = 500, nullable = false)
     private String nomePai;
 
-    @ManyToOne
-    private InstituicaoFutura instituicaoFutura;
+    @Column(length = 500, nullable = false)
+    private String escolaAnterior;
+    @Column(length = 500, nullable = false)
+    private String localidadeAnteiror;
 
-    @ManyToOne
-    private EscolaAnterior escolaAnterior;
+    private int anoDeConclusao;
 
     @ManyToOne
     private Turma idTurma;
@@ -74,8 +77,6 @@ public class Aluno implements Serializable {
 
     public Aluno() {
         this.renda = new BigDecimal("0.00");
-        this.instituicaoFutura = new InstituicaoFutura();
-        this.escolaAnterior = new EscolaAnterior();
         this.idTurma = new Turma();
         this.idCurso = new Curso();
         this.idUsuario = new Usuario();
@@ -121,19 +122,19 @@ public class Aluno implements Serializable {
         this.matricula = matricula;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public int getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(int rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
@@ -169,22 +170,6 @@ public class Aluno implements Serializable {
         this.nomePai = nomePai;
     }
 
-    public InstituicaoFutura getInstituicaoFutura() {
-        return instituicaoFutura;
-    }
-
-    public void setInstituicaoFutura(InstituicaoFutura instituicaoFutura) {
-        this.instituicaoFutura = instituicaoFutura;
-    }
-
-    public EscolaAnterior getEscolaAnterior() {
-        return escolaAnterior;
-    }
-
-    public void setEscolaAnterior(EscolaAnterior escolaAnterior) {
-        this.escolaAnterior = escolaAnterior;
-    }
-
     public Turma getIdTurma() {
         return idTurma;
     }
@@ -209,11 +194,33 @@ public class Aluno implements Serializable {
         this.idUsuario = idUsuario;
     }
 
+    public String getEscolaAnterior() {
+        return escolaAnterior;
+    }
+
+    public void setEscolaAnterior(String escolaAnterior) {
+        this.escolaAnterior = escolaAnterior;
+    }
+
+    public String getLocalidadeAnteiror() {
+        return localidadeAnteiror;
+    }
+
+    public void setLocalidadeAnteiror(String localidadeAnteiror) {
+        this.localidadeAnteiror = localidadeAnteiror;
+    }
+
+    public int getAnoDeConclusao() {
+        return anoDeConclusao;
+    }
+
+    public void setAnoDeConclusao(int anoDeConclusao) {
+        this.anoDeConclusao = anoDeConclusao;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 6;
-        hash = 97 * hash + Objects.hashCode(this.instituicaoFutura);
-        hash = 97 * hash + Objects.hashCode(this.escolaAnterior);
+        int hash = 5;
         hash = 97 * hash + Objects.hashCode(this.idTurma);
         hash = 97 * hash + Objects.hashCode(this.idCurso);
         hash = 97 * hash + Objects.hashCode(this.idUsuario);
@@ -231,12 +238,6 @@ public class Aluno implements Serializable {
         }
 
         final Aluno other = (Aluno) object;
-        if (!Objects.equals(this.instituicaoFutura, other.instituicaoFutura)) {
-            return false;
-        }
-        if (!Objects.equals(this.escolaAnterior, other.escolaAnterior)) {
-            return false;
-        }
         if (!Objects.equals(this.idTurma, other.idTurma)) {
             return false;
         }

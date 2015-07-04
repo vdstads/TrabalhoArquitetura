@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <p:panel>
+            <p:panelGrid columns="2">
+                Nome:
+                <p:inputText value="#{cursoController.filtro.nome}"/>
+                <ui:include src="../componentes/botoesListagem.xhtml">
+                    <ui:param name="controller" value="#{cursoController}"/>
+                </ui:include>
+            </p:panelGrid>
+            <p:dataTable value="#{cursoController.listagem}" var="item">
+                <p:column headerText="ID" width="75">
+                    #{item.id}
+                </p:column>
+                <p:column headerText="Nome">
+                    #{item.nome}
+                </p:column>
+                <p:column headerText="Ação" width="100">
+                    <p:commandButton value="Editar" ajax="false" action="#{cursoController.abrir(item)}"/>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
