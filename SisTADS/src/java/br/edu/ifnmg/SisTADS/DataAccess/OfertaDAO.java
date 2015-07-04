@@ -23,7 +23,7 @@ public class OfertaDAO extends DAOGenerico<Oferta> implements OfertaRepositorio 
 
     @Override
     public List<Oferta> Buscar(Oferta filtro) {
-        return Like("semestre", filtro.getSemestre())
+        return OrderBy("id", "desc")
                 .Buscar();
     }
 

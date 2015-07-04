@@ -78,7 +78,7 @@ public class Disciplina implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.Disciplina[ id=" + id + " ]";
+        return this.nome;
     }
 
 }

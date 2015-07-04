@@ -162,7 +162,7 @@ public class Professor implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.Professor[ id=" + id + " ]";
+        return this.nome;
     }
 
 }

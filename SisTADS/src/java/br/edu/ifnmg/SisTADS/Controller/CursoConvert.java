@@ -45,7 +45,7 @@ public class CursoConvert implements Serializable, Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        if (value == null || value.toString().equals("")) {
+        if (value == null) {
             return null;
         } else {
             Curso curso = (Curso) value;

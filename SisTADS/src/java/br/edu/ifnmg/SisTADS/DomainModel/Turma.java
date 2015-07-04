@@ -29,14 +29,12 @@ public class Turma implements Serializable {
 
     private int periodo;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date ano;
+    private int ano;
 
     @Column(length = 150, nullable = false)
-    private String ingresso;
+    private String nome;
 
     public Turma() {
-        this.ano = new Date();
     }
 
     public Long getId() {
@@ -55,20 +53,20 @@ public class Turma implements Serializable {
         this.periodo = periodo;
     }
 
-    public Date getAno() {
+    public int getAno() {
         return ano;
     }
 
-    public void setAno(Date ano) {
+    public void setAno(int ano) {
         this.ano = ano;
     }
 
-    public String getIngresso() {
-        return ingresso;
+    public String getNome() {
+        return nome;
     }
 
-    public void setIngresso(String ingresso) {
-        this.ingresso = ingresso;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     @Override
@@ -93,7 +91,7 @@ public class Turma implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.Turma[ id=" + id + " ]";
+        return this.nome + " - " + this.periodo + "/" + this.ano;
     }
 
 }

@@ -120,7 +120,7 @@ public abstract class DAOGenerico<T> implements Repositorio<T> {
             manager.flush();
             return true;
         } catch (Exception e) {
-
+            e.printStackTrace();
             return false;
         }
     }

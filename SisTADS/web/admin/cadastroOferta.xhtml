@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                Cadastro de Oferta
+            </f:facet>
+            <p:panelGrid columns="2">
+                Semestre:
+                <p:selectOneRadio value="#{ofertaController.entidade.semestre}">
+                    <f:selectItem itemLabel="1° Semestre" itemValue="1"/>
+                    <f:selectItem itemLabel="2° Semestre" itemValue="2"/>
+                </p:selectOneRadio>
+                Disciplina:
+                <p:selectOneMenu value="#{ofertaController.entidade.disciplina}" converter="${disciplinaConvert}">
+                    <f:selectItems value="#{disciplinaController.listagem}"/>
+                </p:selectOneMenu>
+                Professor:
+                <p:selectOneMenu value="#{ofertaController.entidade.professor}" converter="${professorConvert}">
+                    <f:selectItems value="#{professorController.listagem}"/>
+                </p:selectOneMenu>
+                Turma:
+                <p:selectOneMenu value="#{ofertaController.entidade.turma}" converter="${turmaConvert}">
+                    <f:selectItems value="#{turmaController.listagem}"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <ui:include src="../componentes/botoesCadastro.xhtml">
+                <ui:param name="controller" value="#{ofertaController}"/>
+            </ui:include>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

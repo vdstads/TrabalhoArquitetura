@@ -26,8 +26,7 @@ public class Oferta implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 500, nullable = false)
-    private String semestre;
+    private int semestre;
     @ManyToOne
     private Professor professor;
     @ManyToOne
@@ -49,11 +48,11 @@ public class Oferta implements Serializable {
         this.id = id;
     }
 
-    public String getSemestre() {
+    public int getSemestre() {
         return semestre;
     }
 
-    public void setSemestre(String semestre) {
+    public void setSemestre(int semestre) {
         this.semestre = semestre;
     }
 
@@ -114,7 +113,7 @@ public class Oferta implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.Oferta[ id=" + id + " ]";
+        return "Disciplina:" + this.disciplina.getNome() + "/ Turma:" + this.turma.getNome() + "/ "+this.semestre+"° Semestre";
     }
 
 }

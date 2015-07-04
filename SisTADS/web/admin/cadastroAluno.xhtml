@@ -39,10 +39,12 @@
                 Matrícula:
                 <p:spinner value="#{alunoController.entidade.matricula}"/>
                 Curso:
-                <p:selectOneMenu value="#{alunoController.entidade.idCurso}">
+                <p:selectOneMenu value="#{alunoController.entidade.idCurso}" converter="${cursoConvert}">
+                    <f:selectItems value="#{cursoController.listagem}"/>
                 </p:selectOneMenu>
                 Turma:
-                <p:selectOneMenu value="#{alunoController.entidade.idTurma}">
+                <p:selectOneMenu value="#{alunoController.entidade.idTurma}" converter="${turmaConvert}">
+                    <f:selectItems value="#{turmaController.listagem}"/>
                 </p:selectOneMenu>
                 Escola Anterior:
                 <p:inputText value="#{alunoController.entidade.escolaAnterior}"/>

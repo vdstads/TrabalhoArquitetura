@@ -47,7 +47,14 @@ public class AlunoController extends ControllerGenerico<Aluno> implements Serial
     @Override
     public String salvar() {
         if (repositorio.SalvarUsuario(email, senha)) {
-            return super.salvar(); //To change body of generated methods, choose Tools | Templates.
+            entidade.setIdUsuario(repositorio.AbrirUsuario(email));
+            if (repositorio.Salvar(entidade)) {
+                MensagemSucesso("Sucesso!", "Registro salvo com sucesso!");
+                return "listaAluno.xhtml";
+            } else {
+                MensagemErro("Erro!", "Consulte o administrador do sistema!");
+                return "";
+            }
         } else {
             MensagemErro("Erro!", "Consulte o administrador do sistema!");
             return "";

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.SisTADS.DataAccess;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.TurmaRepositorio;
@@ -16,23 +15,19 @@ import javax.ejb.Singleton;
  * @author Mauro
  */
 @Singleton
-public class TurmaDAO extends DAOGenerico<Turma> implements TurmaRepositorio{
-    
-    
-    public TurmaDAO(){
-        
+public class TurmaDAO extends DAOGenerico<Turma> implements TurmaRepositorio {
+
+    public TurmaDAO() {
+
         super(Turma.class);
     }
-    
-    
+
     @Override
     public List<Turma> Buscar(Turma filtro) {
-        
-        return Like("ingresso", filtro.getIngresso())
-               .IgualA("id", filtro.getId())
-               .IgualA("ano", filtro.getAno())
-               .IgualA("periodo", filtro.getPeriodo())
-               .OrderBy("ingresso", "ASC")
-               .Buscar();
+
+        return Like("nome", filtro.getNome())
+                .IgualA("id", filtro.getId())
+                .OrderBy("nome", "ASC")
+                .Buscar();
     }
 }

@@ -252,7 +252,7 @@ public class Aluno implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.Aluno[ id=" + id + " ]";
+        return this.nome;
     }
 
 }

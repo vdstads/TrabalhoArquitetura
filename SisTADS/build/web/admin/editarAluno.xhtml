@@ -1,9 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./Template.xhtml">
+                template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
+        <p:panel>   
+            <f:facet name="header">
+                Alteração de Aluno
+            </f:facet>
+            <p:panelGrid columns="2">
+                Nome:
+                <p:inputText value="#{alunoController.entidade.nome}"/>
+                Data de Nascimento:
+                <p:calendar value="#{alunoController.entidade.dataNascimento}" locale="pt_BR" pattern="dd/mm/YYYY"/>
+                Rg:
+                <p:inputText value="#{alunoController.entidade.rg}"/>
+                Sexo:
+                <p:selectOneRadio value="#{alunoController.entidade.sexo}">
+                    <f:selectItem itemLabel="F" itemValue="F"/>
+                    <f:selectItem itemLabel="M" itemValue="M"/>
+                </p:selectOneRadio>
+                Telefone ou Celular:
+                <p:inputMask value="#{alunoController.entidade.telefone}" mask="(99)9999-9999"/>
+                Mãe:
+                <p:inputText value="#{alunoController.entidade.nomeMae}"/>
+                Pai:
+                <p:inputText value="#{alunoController.entidade.nomePai}"/>
+                Renda:
+                <p:spinner value="#{alunoController.entidade.renda}"/>
+                Quantidade de Irmãos:
+                <p:spinner value="#{alunoController.entidade.quantidadeIrmaos}"/>
+                Matrícula:
+                <p:spinner value="#{alunoController.entidade.matricula}"/>
+                Curso:
+                <p:selectOneMenu value="#{alunoController.entidade.idCurso}" converter="${cursoConvert}">
+                    <f:selectItems value="#{cursoController.listagem}"/>
+                </p:selectOneMenu>
+                Turma:
+                <p:selectOneMenu value="#{alunoController.entidade.idTurma}" converter="${turmaConvert}">
+                    <f:selectItems value="#{turmaController.listagem}"/>
+                </p:selectOneMenu>
+                Escola Anterior:
+                <p:inputText value="#{alunoController.entidade.escolaAnterior}"/>
+                Cidade(Estado) Anterior:
+                <p:inputText value="#{alunoController.entidade.localidadeAnteiror}"/>
+                Ano de Conclusão:
+                <p:spinner value="#{alunoController.entidade.anoDeConclusao}"/>
+                <ui:include src="../componentes/botoesEditar.xhtml">
+                    <ui:param name="controller" value="#{alunoController}"/>
+                </ui:include>
+            </p:panelGrid>
+        </p:panel>
     </ui:define>
 
 </ui:composition>
