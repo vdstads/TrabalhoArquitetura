@@ -71,7 +71,7 @@ public class TipoProducao implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SisTADS.DomainModel.TipoProducao[ id=" + id + " ]";
+        return this.nome;
     }
 
 }

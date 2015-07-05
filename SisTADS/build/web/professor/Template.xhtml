@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,13 +15,23 @@
 
     <h:body>
 
-        <div id="top" class="top">
-            <ui:insert name="top">Top</ui:insert>
+        <div style="float: top; background-color: black; width: 100%; height: 200px;">
         </div>
 
-        <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
-        </div>
+        <h:form>
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton value="Produção" ajax="false" action="listaProducao.xhtml"/>
+                </f:facet>
+                <f:facet name="right">
+                    <p:commandButton value="#{usuarioController.nomeBotao}" ajax="false" action="#{usuarioController.logout()}"/>
+                </f:facet>
+            </p:toolbar>
+            <p:growl id="global"/>
+            <div id="content" class="center_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </h:form>
 
     </h:body>
 

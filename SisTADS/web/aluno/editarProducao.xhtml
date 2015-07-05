@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                Cadastro de Produção
+            </f:facet>
+            <p:panelGrid columns="2">
+                Nome:
+                <p:inputText value="#{producaoController.entidade.nome}"/>
+                Data:
+                <p:calendar value="#{producaoController.entidade.data}" locale="pt_BR" pattern="dd/mm/yyyy"/>
+                Aluno:
+                <p:selectOneMenu value="#{producaoController.entidade.aluno}" converter="${alunoConvert}">
+                    <f:selectItems value="#{alunoController.listagem}"/>
+                </p:selectOneMenu>
+                Tipo de Produção:
+                <p:selectOneMenu value="#{producaoController.entidade.tipoProducao}" converter="${tipoProducaoConvert}">
+                    <f:selectItems value="#{tipoProducaoController.listagem}"/>
+                </p:selectOneMenu>
+                <ui:include src="../componentes/botoesEditar.xhtml">
+                    <ui:param name="controller" value="#{producaoController}"/>
+                </ui:include>
+            </p:panelGrid>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
