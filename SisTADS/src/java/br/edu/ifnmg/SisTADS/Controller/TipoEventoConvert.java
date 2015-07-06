@@ -14,12 +14,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.inject.Named;
 
 /**
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "tipoEventoConvert")
 @SessionScoped
 public class TipoEventoConvert implements Serializable, Converter {
 

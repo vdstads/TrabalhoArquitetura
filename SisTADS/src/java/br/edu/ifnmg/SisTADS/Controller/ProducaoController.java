@@ -13,15 +13,15 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "producaoController")
 @SessionScoped
 public class ProducaoController extends ControllerGenerico<Producao> implements Serializable {
 

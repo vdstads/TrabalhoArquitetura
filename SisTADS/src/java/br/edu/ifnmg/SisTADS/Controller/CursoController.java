@@ -7,18 +7,18 @@ package br.edu.ifnmg.SisTADS.Controller;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Curso;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.CursoRepositorio;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
 /**
  *
  * @author andre
  */
-@ManagedBean
+//@ManagedBean
+@Named(value = "cursoController")
 @SessionScoped
 public class CursoController extends ControllerGenerico<Curso> implements Serializable {
 

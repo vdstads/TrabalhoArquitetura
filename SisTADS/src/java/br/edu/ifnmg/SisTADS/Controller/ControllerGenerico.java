@@ -25,6 +25,9 @@ public class ControllerGenerico<T> {
 
     private Repositorio<T> dao;
 
+    public ControllerGenerico() {
+    }
+
     public ControllerGenerico(String paginaListagem, String paginaEdicao, String paginaCadastro) {
         this.paginaListagem = paginaListagem;
         this.paginaEdicao = paginaEdicao;
@@ -45,6 +48,16 @@ public class ControllerGenerico<T> {
         FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, titulo);
         context.addMessage(null, m);
         context.getExternalContext().getFlash().setKeepMessages(true);
+    }
+
+    public String editar() {
+        if (dao.Refresh(entidade)) {
+            MensagemSucesso("Sucesso!", "Registro alterado com sucesso!");
+            return paginaListagem;
+        } else {
+            MensagemErro("Erro!", "Consulte o administrador do sistema!");
+            return null;
+        }
     }
 
     public String salvar() {
@@ -117,6 +130,5 @@ public class ControllerGenerico<T> {
     public List<T> getListagem() {
         return dao.Buscar(filtro);
     }
-
 
 }

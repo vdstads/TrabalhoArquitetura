@@ -13,11 +13,13 @@ import java.util.List;
  */
 public interface Repositorio<T> {
 
+    public boolean Refresh(T obj);
+
     public boolean Salvar(T obj);
 
     public T Abrir(Long id);
 
     public boolean Apagar(T obj);
-    
+
     public List<T> Buscar(T filtro);
 }

@@ -21,7 +21,7 @@ import javax.faces.convert.Converter;
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "ofertaConvert")
 @SessionScoped
 public class OfertaConvert implements Serializable, Converter {
 

@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -30,7 +31,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "turmaController")
 @SessionScoped
 public class TurmaController extends ControllerGenerico<Turma> implements Serializable {
 

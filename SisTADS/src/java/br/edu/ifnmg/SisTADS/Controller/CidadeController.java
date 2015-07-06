@@ -12,13 +12,12 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 
 /**
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "cidadeController")
 @SessionScoped
 public class CidadeController extends ControllerGenerico<Cidade> implements Serializable {
 

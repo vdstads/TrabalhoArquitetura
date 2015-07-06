@@ -1,20 +1,19 @@
-package br.edu.ifnmg.SisTADS.Controller;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package br.edu.ifnmg.SisTADS.Controller;
+
 import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
 import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.UsuarioRepositorio;
 import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Enumeration;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -22,8 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author andre
  */
-//@Named(value = "usuarioController")
-@ManagedBean
+@Named(value = "usuarioController")
 @SessionScoped
 public class UsuarioController extends ControllerGenerico<Usuario> implements Serializable {
 
@@ -40,18 +38,19 @@ public class UsuarioController extends ControllerGenerico<Usuario> implements Se
     }
 
     @Override
-    public String novo() {
-        entidade = new Usuario();
-        return super.novo(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public String limparfiltros() {
         filtro = new Usuario();
         return super.limparfiltros(); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public String novo() {
+        entidade = new Usuario();
+        return super.novo(); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String logout() {
+        MensagemErro(null, "logout");
         FacesContext context = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
         session.setAttribute("usuario", null);
@@ -66,6 +65,7 @@ public class UsuarioController extends ControllerGenerico<Usuario> implements Se
         Usuario usuario = repositorio.login(entidade);
         if (usuario == null) {
             MensagemErro("Acesso", "Login ou Senha Inválidos!");
+            return null;
         } else {
             FacesContext context = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
@@ -86,7 +86,7 @@ public class UsuarioController extends ControllerGenerico<Usuario> implements Se
                 return "/aluno/index.xhtml";
             }
         }
-        return "";
+        return null;
     }
 
     public String getNomeBotao() {
@@ -105,8 +105,8 @@ public class UsuarioController extends ControllerGenerico<Usuario> implements Se
         return null;
     }
 
-    @PostConstruct
     public void configurar() {
         setDao(repositorio);
     }
+
 }

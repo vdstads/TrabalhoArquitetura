@@ -12,13 +12,12 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 
 /**
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "tipoEventoController")
 @SessionScoped
 public class TipoEventoController extends ControllerGenerico<TipoEvento> implements Serializable {
 

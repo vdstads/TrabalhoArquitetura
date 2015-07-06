@@ -12,12 +12,13 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
 /**
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "tipoProducaoController")
 @SessionScoped
 public class TipoProducaoController extends ControllerGenerico<TipoProducao> implements Serializable {
 

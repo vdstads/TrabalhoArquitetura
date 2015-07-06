@@ -21,7 +21,7 @@ import javax.faces.convert.Converter;
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "tipoProducaoConvert")
 @SessionScoped
 public class TipoProducaoConvert implements Serializable, Converter {
 

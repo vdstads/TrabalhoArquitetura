@@ -18,7 +18,7 @@ import javax.faces.bean.ManagedBean;
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "eventoController")
 @SessionScoped
 public class EventoController extends ControllerGenerico<Evento> implements Serializable {
 

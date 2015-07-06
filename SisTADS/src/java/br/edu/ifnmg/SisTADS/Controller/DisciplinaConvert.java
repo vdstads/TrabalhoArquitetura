@@ -5,22 +5,21 @@
  */
 package br.edu.ifnmg.SisTADS.Controller;
 
-import br.edu.ifnmg.SisTADS.DomainModel.Curso;
 import br.edu.ifnmg.SisTADS.DomainModel.Disciplina;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.DisciplinaRepositorio;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.inject.Named;
 
 /**
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "disciplinaConvert")
 @SessionScoped
 public class DisciplinaConvert implements Serializable, Converter {
 

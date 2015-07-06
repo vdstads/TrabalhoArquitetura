@@ -18,7 +18,7 @@ import javax.faces.bean.ManagedBean;
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "ofertaController")
 @SessionScoped
 public class OfertaController extends ControllerGenerico<Oferta> implements Serializable {
 

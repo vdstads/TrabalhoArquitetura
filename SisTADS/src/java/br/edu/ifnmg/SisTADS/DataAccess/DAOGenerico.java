@@ -142,5 +142,14 @@ public abstract class DAOGenerico<T> implements Repositorio<T> {
         }
     }
 
+    public boolean Refresh(T obj) {
+        try {
+            manager.merge(obj);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public abstract List<T> Buscar(T filtro);
 }

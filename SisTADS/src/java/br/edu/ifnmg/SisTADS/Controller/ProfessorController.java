@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "professorController")
 @SessionScoped
 public class ProfessorController extends ControllerGenerico<Professor> implements Serializable {
 

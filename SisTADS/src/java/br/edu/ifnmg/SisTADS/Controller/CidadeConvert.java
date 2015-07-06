@@ -10,16 +10,16 @@ import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.CidadeRepositorio;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.inject.Named;
 
 /**
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "cidadeConvert")
 @SessionScoped
 public class CidadeConvert implements Serializable, Converter {
 

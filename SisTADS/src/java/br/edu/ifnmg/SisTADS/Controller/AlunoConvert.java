@@ -6,13 +6,11 @@
 package br.edu.ifnmg.SisTADS.Controller;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
-import br.edu.ifnmg.SisTADS.DomainModel.Cidade;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.AlunoRepositorio;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -21,7 +19,7 @@ import javax.faces.convert.Converter;
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "alunoConvert")
 @SessionScoped
 public class AlunoConvert implements Serializable, Converter {
 

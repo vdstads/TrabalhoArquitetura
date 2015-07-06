@@ -21,7 +21,7 @@ import javax.faces.convert.Converter;
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "turmaConvert")
 @SessionScoped
 public class TurmaConvert implements Serializable, Converter {
 

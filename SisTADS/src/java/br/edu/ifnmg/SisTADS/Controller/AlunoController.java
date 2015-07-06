@@ -7,20 +7,17 @@ package br.edu.ifnmg.SisTADS.Controller;
 
 import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.AlunoRepositorio;
-import br.edu.ifnmg.SisTADS.DomainModel.Usuario;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+import javax.inject.Named;
 
 /**
  *
  * @author andre
  */
-@ManagedBean
+@Named(value = "alunoController")
 @SessionScoped
 public class AlunoController extends ControllerGenerico<Aluno> implements Serializable {
 
