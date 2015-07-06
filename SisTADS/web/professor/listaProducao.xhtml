@@ -20,6 +20,18 @@
                 <p:column headerText="Nome">
                     #{item.nome}
                 </p:column> 
+                <p:column headerText="Data">
+                    #{item.data}
+                </p:column>
+                <p:column headerText="Tipo">
+                    #{item.tipoProducao}
+                </p:column>
+                <p:column headerText="Aluno">
+                    #{item.aluno}
+                </p:column>
+                <p:column headerText="Professor">
+                    #{item.professor}
+                </p:column>
                 <p:column headerText="Ação" width="100">
                     <p:commandButton value="Editar" ajax="false" action="#{producaoController.abrir(item)}"/>
                 </p:column>

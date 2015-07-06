@@ -26,7 +26,10 @@
                         <p:menuitem value="Aluno" ajax="false" action="listaAluno.xhtml"/>
                     </p:menuButton>
                     <p:commandButton value="Curso" ajax="false" action="listaCurso.xhtml"/>
-                    <p:commandButton value="Turma" ajax="false" action="listaTurma.xhtml"/>
+                    <p:menuButton value="Turma">
+                        <p:menuitem value="Turma" ajax="false" action="listaTurma.xhtml"/>
+                        <p:menuitem value="Relatorio Aluno Por Turma" ajax="false" action="#{turmaController.imprimirRelatorio()}"/>
+                    </p:menuButton>
                     <p:menuButton value="Disciplina">
                         <p:menuitem value="Disciplina" ajax="false" action="listaDisciplina.xhtml"/>
                         <p:menuitem value="Oferta" ajax="false" action="listaOferta.xhtml"/>

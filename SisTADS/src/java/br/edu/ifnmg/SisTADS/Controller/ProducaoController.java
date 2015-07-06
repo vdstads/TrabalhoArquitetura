@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.SisTADS.Controller;
 
+import br.edu.ifnmg.SisTADS.DomainModel.Aluno;
 import br.edu.ifnmg.SisTADS.DomainModel.Producao;
 import br.edu.ifnmg.SisTADS.DomainModel.Professor;
 import br.edu.ifnmg.SisTADS.DomainModel.Repositorios.ProducaoRepositorio;
@@ -29,11 +30,25 @@ public class ProducaoController extends ControllerGenerico<Producao> implements 
      */
     @EJB
     private ProducaoRepositorio repositorio;
-
+    
     public ProducaoController() {
         super("listaProducao.xhtml", "editarProducao.xhtml", "cadastroProducao.xhtml");
         entidade = new Producao();
         filtro = new Producao();
+    }
+    
+    public String salvarAluno() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+        Aluno aluno = (Aluno) session.getAttribute("aluno");
+        entidade.setAluno(aluno);
+        if (repositorio.Salvar(entidade)) {
+            MensagemSucesso("Sucesso!", "Registro salvo com sucesso!");
+            return "listaProducao.xhtml";
+        } else {
+            MensagemErro("Erro!", "Consulte o administrador do sistema!");
+            return "";
+        }
     }
 
     public String salvarProfessor() {
@@ -49,13 +64,13 @@ public class ProducaoController extends ControllerGenerico<Producao> implements 
             return "";
         }
     }
-
+    
     @Override
     public String limparfiltros() {
         filtro = new Producao();
         return super.limparfiltros(); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @PostConstruct
     public void configurar() {
         setDao(repositorio);

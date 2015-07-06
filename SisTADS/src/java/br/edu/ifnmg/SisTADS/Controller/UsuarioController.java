@@ -100,7 +100,7 @@ public class UsuarioController extends ControllerGenerico<Usuario> implements Se
             return professor.getNome() + " - Logout";
         } else if (usuario.getNivel().equals("Aluno")) {
             Aluno aluno = repositorio.verificarAluno(usuario);
-            return " - Logout";
+            return "Aluno - Logout";
         }
         return null;
     }

@@ -15,13 +15,13 @@
                 <p:inputText value="#{producaoController.entidade.nome}"/>
                 Data:
                 <p:calendar value="#{producaoController.entidade.data}" locale="pt_BR" pattern="dd/mm/yyyy"/>
-                Aluno:
-                <p:selectOneMenu value="#{producaoController.entidade.aluno}" converter="${alunoConvert}">
-                    <f:selectItems value="#{alunoController.listagem}"/>
-                </p:selectOneMenu>
                 Tipo de Produção:
                 <p:selectOneMenu value="#{producaoController.entidade.tipoProducao}" converter="${tipoProducaoConvert}">
                     <f:selectItems value="#{tipoProducaoController.listagem}"/>
+                </p:selectOneMenu>
+                Professor:
+                <p:selectOneMenu value="#{producaoController.entidade.professor}" converter="${professorConvert}">
+                    <f:selectItems value="#{professorController.listagem}"/>
                 </p:selectOneMenu>
                 <f:facet name="footer">
                     <p:commandButton value="Salvar" ajax="false" action="#{producaoController.salvarProfessor()}"/>
